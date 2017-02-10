@@ -10,7 +10,7 @@ angular.module('stepApp')
                 return angular.isDefined(_identity);
             },
             isAuthenticated: function () {
-                return _authenticated;
+                return false;
             },
             hasAuthority: function (authority) {
                 if (!_authenticated) {

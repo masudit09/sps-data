@@ -1,0 +1,63 @@
+<div>
+    <div class="row">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-primary panel-pprimary" >
+                <div class="panel-heading">
+                    <div class="panel-title" >Sign in</div>
+                </div>
+
+                <div style="padding-top:30px" class="panel-body" >
+                    <span class="col-sm-12 login-error" ng-show="authenticationError">
+                        Failed to sign in! Please check your credentials and try again.
+                    </span>
+                    <div class="clear-fix"></div>
+                    <form role="form" ng-submit="login($event)" novalidate show-validation class="form-horizontal"  >
+
+                        <div style="margin-bottom: 25px" class="input-group">
+
+                            <input type="text" class="form-control" id="username" ng-model="username">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        </div>
+
+
+                        <div style="margin-bottom: 25px" class="input-group">
+
+                            <input type="password" class="form-control" id="password"
+                                   ng-model="password">
+                            <a class="input-group-addon" title="Forgot Password" href="#/reset/request"><i class="fa fa-question"></i></a>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="login-remember" type="checkbox" name="remember" value="1"> <span >Remember me</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:10px" class="form-group">
+                            <div class="col-sm-12 controls text-center">
+                                <button type="submit" class="btn btn-primary col-sm-12" >Sign in</button>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; text-align:center" >
+                                    Not a member
+                                    <a class="alert-link" href="#/register">Join Now</a>
+                                 </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

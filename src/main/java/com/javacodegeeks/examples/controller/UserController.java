@@ -5,9 +5,13 @@ import com.javacodegeeks.examples.entities.User;
 import com.javacodegeeks.examples.enumeration.Role;
 import com.javacodegeeks.examples.repositories.AuthorityRepository;
 import com.javacodegeeks.examples.repositories.UserRepository;
+import com.javacodegeeks.examples.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/user/")
+@RequestMapping("/api/")
 public class UserController {
 
     @Autowired
@@ -76,6 +80,10 @@ public class UserController {
                 "Successfully Created/Edited a new user");
         return new ModelAndView("redirect:/user/view/{user.id}",
                 "user.id", user.getId());
+    }
+    @RequestMapping(value = "/account", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getAccount() {
+        return new ResponseEntity<User>(userRepository.findByUsername(Util.getCurrentUsername()),HttpStatus.OK);
     }
 
     private void updateAuthority(String username, List<Role> userRoles) {
