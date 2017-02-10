@@ -10,7 +10,7 @@ angular.module('app')
                 return angular.isDefined(_identity);
             },
             isAuthenticated: function () {
-                return false;
+                return _authenticated;
             },
             hasAuthority: function (authority) {
                 if (!_authenticated) {
