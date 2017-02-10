@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stepApp')
+angular.module('app')
     .config(function ($stateProvider) {
         $stateProvider
             .state('account', {

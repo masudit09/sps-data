@@ -1,8 +1,8 @@
-var stepApp=angular.module('stepApp', ['LocalStorageModule', 'pascalprecht.translate',
+var app=angular.module('app', ['LocalStorageModule', 'pascalprecht.translate',
     'ui.bootstrap', // for modal dialogs
     'ngResource', 'ui.router', 'ngCookies']);
 
-stepApp.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal) {
+app.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal) {
         // update the window title using params in the following
         // precendence
         // 1. titleKey parameter
@@ -105,7 +105,7 @@ stepApp.run(function ($rootScope, $location, $window, $http, $state, Auth, Princ
         $rootScope.back = function() {
             // If previous state is 'activate' or do not exist go to 'home'
             if ($rootScope.previousStateName === 'activate' || $state.get($rootScope.previousStateName) === null) {
-                $state.go('^');
+                $state.go('home');
             } else {
                 $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
             }
@@ -115,7 +115,7 @@ stepApp.run(function ($rootScope, $location, $window, $http, $state, Auth, Princ
 
         $rootScope.logout = function () {
             Auth.logout();
-            $state.go('^');
+            $state.go('home');
         };
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider,$translateProvider, $locationProvider) {

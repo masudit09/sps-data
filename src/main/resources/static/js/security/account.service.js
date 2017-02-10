@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stepApp')
+angular.module('app')
     .factory('Account', function Account($resource) {
         return $resource('api/account', {}, {
             'get': { method: 'GET', params: {}, isArray: false,

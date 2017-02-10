@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stepApp').controller('ApplyDialogController',
+angular.module('app').controller('ApplyDialogController',
     function ($scope, $state, $stateParams, Principal,JpEmployee, Auth, Language, $translate, EmployeeJobApplication, entity, Jobapplication, User, Job, DataUtils) {
 
 
@@ -64,7 +64,7 @@ angular.module('stepApp').controller('ApplyDialogController',
         };
 
         var onSaveFinished = function (result) {
-            $scope.$emit('stepApp:jobapplicationUpdate', result);
+            $scope.$emit('app:jobapplicationUpdate', result);
            // $modalInstance.close(result);
             $state.go('appliedJobs');
         };

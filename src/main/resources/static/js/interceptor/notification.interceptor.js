@@ -1,12 +1,12 @@
  'use strict';
 
-angular.module('stepApp')
+angular.module('app')
     .factory('notificationInterceptor', function ($q, AlertService) {
         return {
             response: function(response) {
-                var alertKey = response.headers('X-stepApp-alert');
+                var alertKey = response.headers('X-app-alert');
                 if (angular.isString(alertKey)) {
-                    AlertService.success(alertKey, { param : response.headers('X-stepApp-params')});
+                    AlertService.success(alertKey, { param : response.headers('X-app-params')});
                 }
                 return response;
             }

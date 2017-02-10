@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stepApp')
+angular.module('app')
     .controller('NavbarController', function ($scope, $location, $state, Auth, Principal) {
         //$scope.isAuthenticated=false;
          $scope.isAuthenticated = Principal.isAuthenticated;

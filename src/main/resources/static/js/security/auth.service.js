@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stepApp')
+angular.module('app')
     .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Account) {
         return {
             login: function (credentials, callback) {
@@ -42,12 +42,13 @@ angular.module('stepApp')
 
                         // an authenticated user can't access to login and register pages
                         if (isAuthenticated && $rootScope.toState.parent === 'account' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register')) {
-                           console.log(isAuthenticated);
-                            $state.go('roles', {reload: true});
+                           console.log('authenticated');
+                            $state.go('home', {reload: true});
                         }
 
                         if ($rootScope.toState.data.authorities && $rootScope.toState.data.authorities.length > 0 && !Principal.hasAnyAuthority($rootScope.toState.data.authorities)) {
                             if (isAuthenticated) {
+                                console.log('accessdenied');
                                 // user is signed in but not authorized for desired state
                                 $state.go('accessdenied');
                             }
@@ -56,7 +57,7 @@ angular.module('stepApp')
                                 // send them to the signin state, so you can return them when you're done
                                 $rootScope.previousStateName = $rootScope.toState;
                                 $rootScope.previousStateNameParams = $rootScope.toStateParams;
-
+                                console.log('unauthorized');
                                 // now, send them to the signin state so they can log in
                                 $state.go('login');
                             }

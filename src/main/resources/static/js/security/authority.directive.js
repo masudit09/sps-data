@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stepApp')
+angular.module('app')
     .directive('hasAnyAuthority', ['Principal', function (Principal) {
         return {
             restrict: 'A',

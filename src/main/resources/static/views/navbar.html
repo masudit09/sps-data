@@ -188,12 +188,12 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li></li><span >Log out</span></a></li>
-                                        <!--<li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span
-                                                class="glyphicon glyphicon-log-in"></span>
-                                            &#xA0;<span >Login</span></a></li>-->
-                                        <li ui-sref-active="active"><a ui-sref="login"><span
+                                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span
                                                 class="glyphicon glyphicon-log-in"></span>
                                             &#xA0;<span >Login</span></a></li>
+                                        <!--<li ui-sref-active="active"><a ui-sref="login"><span
+                                                class="glyphicon glyphicon-log-in"></span>
+                                            &#xA0;<span >Login</span></a></li>-->
 
                                     </ul>
                                 </li>
@@ -223,9 +223,8 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#/"><span class="site-name" >Home</span>  </a>
-        </div><!--
-        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">-->
-        <div class="collapse navbar-collapse" id="navbar-collapse" >
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav nav-pills navbar-right">
                 <li ui-sref-active="active">
                     <a ui-sref="home">
@@ -233,115 +232,7 @@
                         <span >Home</span>
                     </a>
                 </li>
-                <!-- <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="job-portal"><span
-                     class="glyphicon glyphicon-asterisk"></span>
-                     &#xA0;<span translate="global.menu.jobPortal">Job Portal</span></a>
-                 </li>
-                 <li ui-sref-active="active" ng-switch-when="false"><a href="#/"><span
-                     class="glyphicon glyphicon-asterisk"></span>
-                     &#xA0;<span translate="global.menu.jobPortal">Job Portal</span></a>
-                 </li>
-                 <li ui-sref-active="active" ng-switch-when="false">
-                     <a ui-sref="instituteInfo.generalInfo.new">
-                         <span class="glyphicon glyphicon-home"></span>
-                         <span translate="global.menu.instituteInfo">Institute info</span>
-                     </a>
-                 </li>-->
-                <!--  <li has-any-authority="ROLE_ADMIN,ROLE_MPOADMIN,ROLE_INSTITUTE,ROLE_INSTEMP,ROLE_FRONTDESK,ROLE_AD,ROLE_DIRECTOR,ROLE_DG,ROLE_DEO" ui-sref-active="active" ng-switch-when="true"
-                      class="dropdown pointer">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                  <span>
-                                      <span class="glyphicon glyphicon-tower"></span>
-                                      <span class="hidden-tablet" translate="global.menu.bteb">BTEB</span>
-                                      <b class="caret"></b>
-                                  </span>
-                      </a>
-                      <ul class="dropdown-menu">
-                          <li has-any-authority="ROLE_ADMIN" ui-sref-active="active">
-                              <a ui-sref="courseInfo"><span
-                                  class="glyphicon glyphicon-dashboard"></span>
-                                  &#xA0;<span translate="global.menu.courseInfo">Course Information</span></a>
-                          </li>
-                          <li ui-sref-active="active" >
-                              <a has-any-authority="ROLE_ADMIN" ui-sref="smsGateway" data-toggle="collapse" data-target=".navbar-collapse.in">
-                                  <span class="glyphicon glyphicon-send"></span>
-                                  &#xA0;<span translate="global.menu.entities.smsGateway">smsGateway</span></a></li>
-                          <li ui-sref-active="active" >
-                              <a has-any-authority="ROLE_ADMIN" ui-sref="fee" data-toggle="collapse" data-target=".navbar-collapse.in">
-                                  <span class="glyphicon glyphicon-tags"></span>
-                                  &#xA0;<span translate="global.menu.entities.fee">fee</span></a>
-                          </li>
-                       </ul>
-                  </li>
-  --><!--
-                <li has-any-authority="ROLE_ADMIN,ROLE_MPOADMIN,ROLE_INSTITUTE,ROLE_INSTEMP,ROLE_FRONTDESK,ROLE_AD,ROLE_DIRECTOR,ROLE_DG,ROLE_DEO" ui-sref-active="active" ng-switch-when="true"
-                    class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-tower"></span>
-                                    <span class="hidden-tablet" translate="global.menu.institute">Institute</span>
-                                    <b class="caret"></b>
-                                </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li has-any-authority="ROLE_ADMIN, ROLE_INSTITUTE" ui-sref-active="active">
-                            <a ui-sref="instituteInfo"><span
-                                class="glyphicon glyphicon-dashboard"></span>
-                                &#xA0;<span translate="global.menu.instituteInfo">Institute Info</span></a>
-                        </li>
-                        <li has-any-authority="ROLE_ADMIN,ROLE_INSTITUTE">
-                            <a ui-sref="employeeInfo"><span
-                                class="glyphicon glyphicon-dashboard"></span>
-                                &#xA0;<span translate="global.menu.employee">Employee</span></a>
-                        </li>
 
-                        <li has-any-authority="ROLE_MPOADMIN,ROLE_ADMIN,ROLE_INSTITUTE,ROLE_INSTEMP,ROLE_FRONTDESK,ROLE_AD,ROLE_DIRECTOR,ROLE_DG,ROLE_DEO" ui-sref-active="active">
-                            <a ui-sref="mpo.application"><span
-                                class="glyphicon glyphicon-dashboard"></span>
-                                &#xA0;<span translate="global.menu.mpo">Mpo</span></a>
-                        </li>
-                        <li has-any-authority="ROLE_ADMIN,ROLE_INSTEMP" ui-sref-active="active">
-                            <a ui-sref="employeeInfo.personalInfo"><span
-                                class="glyphicon glyphicon-dashboard"></span>
-                                &#xA0;<span translate="global.menu.employeeInfo">Employee Info</span></a>
-                        </li>
-
-                        <li ui-sref-active="active" >
-                            <a ui-sref="vehicle" data-toggle="collapse" data-target=".navbar-collapse.in">
-                                <span class="glyphicon glyphicon-asterisk"></span>
-                                &#xA0;<span translate="global.menu.entities.vclVehicle">Vehicle</span></a>
-                        </li>
-
-
-
-
-                        </ul>
-                </li>
-   -->             <!--<li  ui-sref-active="active">
-                    <a ui-sref="employeeInfo.personalInfo"><span
-                        class="glyphicon glyphicon-dashboard"></span>
-                        &#xA0;<span translate="global.menu.employeeInfo">Employee Info</span></a>
-                </li>-->
-
-                <!--<li has-any-authority="ROLE_ADMIN, ROLE_INSTITUTE,ROLE_TEACHER" ui-sref-active="active" ng-switch-when="true">
-                    <a ui-sref="instituteInfo"><span
-                    class="glyphicon glyphicon-dashboard"></span>
-                    &#xA0;<span translate="global.menu.instituteInfo">Institute Info</span></a>
-                </li>
-                <li has-authority="ROLE_ADMIN" class="dropdown pointer">
-                    <a  class="dropdown-toggle" data-toggle="dropdown">
-                         <span translate="global.menu.institute">Institute</span>
-                         <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="instituteInfo"><span
-                            class="glyphicon glyphicon-dashboard"></span>
-                            &#xA0;<span translate="global.menu.institute">Institute</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="employeeInfo"><span
-                            class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span translate="global.menu.employee">Job Portal</span></a></li>
-                    </ul>
-                </li>-->
                 <!--<li has-authority="ROLE_ADMIN" class="dropdown pointer">
                     <a ui-sref="/mpo" class="dropdown-toggle" data-toggle="dropdown">
                         <span translate="global.menu.module">Module</span>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stepApp')
+angular.module('app')
     .provider('AlertService', function () {
         this.toast = false;
 

@@ -10,12 +10,12 @@
             <div class="modal-header bg-primary">
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                         ng-click="clear()">&times;</button>-->
-                <h4 class="modal-title" id="myJobapplicationLabel" translate="stepApp.jobapplication.home.applyjob">
+                <h4 class="modal-title" id="myJobapplicationLabel" translate="app.jobapplication.home.applyjob">
                     Create or edit a Jobapplication</h4>
             </div>
             <div class="modal-body form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-4" translate="stepApp.jobapplication.cvType" >CvType</label>
+                    <label class="col-sm-4" translate="app.jobapplication.cvType" >CvType</label>
                     <div class="col-sm-6">
                         <input type="radio" name="cvType" value="internal" id="internal" ng-model="jobapplication.cvType">Internal
                         <input type="radio" ng-disabled="!internalResume"  name="cvType" value="external" id="external" ng-model="jobapplication.cvType">External
@@ -24,7 +24,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" translate="stepApp.jobapplication.expectedSalary" for="field_expectedSalary">Cv</label>
+                    <label class="col-sm-4 control-label" translate="app.jobapplication.expectedSalary" for="field_expectedSalary">Cv</label>
                     <div class="col-sm-4">
 
                         <input type="number" class="form-control" name="expectedSalary" id="field_expectedSalary"
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div ng-show="selectedCvType == 'external'"  class="form-group" ngf-drop ngf-change="setCv($file, jobapplication)">
-                    <label class="col-sm-3 control-label" translate="stepApp.jobapplication.cv" for="field_cv">Cv</label>
+                    <label class="col-sm-3 control-label" translate="app.jobapplication.cv" for="field_cv">Cv</label>
 
                     <div class="col-sm-4">
                         <div class="help-block">
@@ -47,7 +47,7 @@
                         <input type="file" accept="application/pdf" type="file" ngf-select class="btn btn-default btn-block"
                                ngf-change="setCv($file, jobapplication)" translate="entity.action.addblob" value="Browse Resume">
 
-                        <p class="help-block" translate="stepApp.jobapplication.cv_help">help note</p>
+                        <p class="help-block" translate="app.jobapplication.cv_help">help note</p>
                     </div>
                     <input type="hidden"  class="form-control" name="cv" id="field_cv"
                            ng-model="jobapplication.cv"
@@ -58,17 +58,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-12 control-label" translate="stepApp.jobapplication.note" for="field_note">Note</label>
+                    <label class="col-sm-12 control-label" translate="app.jobapplication.note" for="field_note">Note</label>
 
                     <div class="col-sm-12">
                         <textarea type="text" class="form-control" name="note" id="field_note"
                                   ng-model="jobapplication.note"
                                   cols="20" rows="5" required></textarea>
-                        <p class="help-block" translate="stepApp.jobapplication.note_help">help note</p>
+                        <p class="help-block" translate="app.jobapplication.note_help">help note</p>
                     </div>
                 </div>
                 <!--<div class="form-group hide">
-                    <label class="col-sm-3" translate="stepApp.jobapplication.appliedDate" for="field_appliedDate">AppliedDate</label>
+                    <label class="col-sm-3" translate="app.jobapplication.appliedDate" for="field_appliedDate">AppliedDate</label>
                     <div class="col-sm-4">
                         <input type="date" class="form-control" name="appliedDate" id="field_appliedDate"
                                ng-model="jobapplication.appliedDate"/>

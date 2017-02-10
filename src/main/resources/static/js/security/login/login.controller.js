@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stepApp')
+angular.module('app')
     .controller('LoginController', function ($rootScope, $scope, $state,  Auth, $translate) {
         $scope.user = {};
         $scope.errors = {};
