@@ -27,3 +27,9 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+
+### Address Already used problem? ###
+
+* In Wonwods
+netstat /nao | findstr "8080"
+taskkill -pid 2772 /f
