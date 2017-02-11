@@ -31,5 +31,5 @@ This README would normally document whatever steps are necessary to get your app
 ### Address Already used problem? ###
 
 * In Wonwods
-netstat /nao | findstr "8080"
-taskkill -pid 2772 /f
+* netstat /nao | findstr "8080"
+* taskkill -pid 2772 /f
