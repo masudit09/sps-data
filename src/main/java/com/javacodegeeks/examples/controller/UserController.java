@@ -115,4 +115,27 @@ public class UserController {
                 userRepository.findOne(id));
     }
 
+    @RequestMapping("/global/user/create")
+    public String globalUserCreator() {
+        User user = userRepository.findByUsername("admin");
+        if (user == null) {
+            user = new User();
+            user.setUsername("admin");
+            user.setFullName("admin");
+            user.setFullNameBangla("admin");
+            user.setPlainPassword("admin");
+            user.setEnabled(true);
+            userRepository.save(user);
+
+            Authority authority = new Authority();
+            authority.setAuthority(Role.ROLE_ADMINISTRATOR.toString());
+            authority.setUsername("admin");
+            authorityRepository.save(authority);
+            return "Success";
+        }else
+        {
+            return "User Admin Already Exist";
+        }
+    }
+
 }

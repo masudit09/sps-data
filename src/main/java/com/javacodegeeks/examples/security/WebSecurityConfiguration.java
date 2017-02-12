@@ -51,17 +51,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		web.ignoring()
 				.antMatchers("/js/**/*.{js,html}")
 				.antMatchers("/bower_components/**")
-				.antMatchers("/api/account")
 				.antMatchers("/css/**");
 	}
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 	http
-			/*.csrf()
+			.csrf()
 			.and()
-			.addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class)*/
-			.csrf().disable()
+			.addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class)
+			/*.csrf().disable()*/
 			.exceptionHandling()
 			.authenticationEntryPoint(authenticationEntryPoint)
 			.and()
@@ -80,6 +79,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.permitAll()
 			.and()
 			.authorizeRequests()
+			.antMatchers("/api/global/**").permitAll()
 			.antMatchers("/api/**").authenticated();
 
 
