@@ -8,11 +8,19 @@ angular.module('app')
 
          Principal.identity().then(function (account) {
              $scope.account = account;
+             console.log(account);
+             if(account){
+
+                 $scope.username=account.username;
+             }
+            // $scope.userName= account.userName;
          });
+        $scope.username='Account';
 
 
          $scope.logout = function () {
              Auth.logout();
+             $scope.username='Account';
              $state.go('home');
          };
          $scope.submit = function () {

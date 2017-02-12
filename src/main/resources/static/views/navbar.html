@@ -1,104 +1,28 @@
 
 <div class="dashbord">
 
-    <div class="container">
+    <div class="container" style="width: 100%;padding: 0;" >
         <div class="cover-header-area">
 
             <div class="banner-area">
-                <div class="row">
-                    <div class="col-md-12  col-xs-12 col-lg-12">
-                        <div class="top-area">
-                            <div class="top-area-bg"></div>
-                            <div class="ins-logo"><img src="/assets/images/govt.png" alt=""/>
-                            </div>
-                            <div class="banner-heading">
-                                <h2>Test</h2>
-
-
-                            </div>
-
-                        </div>
-                        <div class="parallelogram"></div>
-                        <div class="habijabi"></div>
-                        <div class="khabikahbi"></div>
-                    </div>
+                <div class="col-md-2" style=" padding-left: 10px;" ><img height="85px" width="170px"  src="/images/logo.jpg" alt=""/>
+                </div>
+                <div class="col-md-8 banner-heading text-center">
+                    <h2>Banner Of Company</h2>
 
                 </div>
-
-            </div>
-        </div>
-        <div class="top-header">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3 class="hide">RECRUITMENT INFORMATION SYSTEM</h3>
-                </div>
-                <div class="col-md-3 search_form">
-                    <form id="search-form pull-right" class="form-inline" class="form-inline form-search"
-                          ng-submit="submit()" name="form" role="form" novalidate
-                          show-validation>
-                        <div class="input-group">
-                            <input type="search" ng-model="q" class="form-control" placeholder="search for..."
-                                   required>
-                        </div>
-                        <button ng-disabled="form.$invalid" type="submit" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </form>
-                </div>
-                <!--<div ng-controller="LanguageController">
-                    <div class="col-md-1 lang-area" ng-repeat="language in languages">
-                        <a active-menu="{{language}}" href="" class="lang" ng-click="changeLanguage(language)">{{language | findLanguageFromKey}}</a>
-                    </div>
-                </div>-->
-
-                <div class="col-md-1">
-                    <div class="notification-area">
-                        <ul class="nav navbar top-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b
-                                        class="caret"></b></a>
-                                <ul class="dropdown-menu alert-dropdown">
-                                    <li>
-                                        <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">View All</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                </div>
-                <div class="col-md-2">
+                <div class="col-md-2 text-right">
                     <div class="user-area">
-                        <ul class="nav navbar top-nav" ng-switch="isAuthenticated()">
+                        <ul class="nav navbar top-nav" ng-switch="isAuthenticated()" style="width: 100%">
                             <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
                             <span class="glyphicon glyphicon-user"></span>
-                            <span class="hidden-tablet">Account</span>
+                            <span class="hidden-tablet">{{username}}</span>
                             <b class="caret"></b>
                         </span>
                                 </a>
-                                <ul class="dropdown-menu" >
+                                <ul class="dropdown-menu" style="width: 100%">
                                     <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()"><span
                                             class="glyphicon glyphicon-log-out"></span>
                                         &#xA0;<span >Log out</span></a></li>
@@ -124,7 +48,6 @@
 
 
 </div>
-</div>
 <!---=========  END HEADER AREA ========--->
 
 <nav class="navbar navbar-inverse no-br" role="navigation">
@@ -136,10 +59,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/"><span class="site-name" >Home</span>  </a>
+            <!--<a class="navbar-brand" href="#/"><span class="site-name" >Home</span>  </a>-->
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
-            <ul class="nav navbar-nav nav-pills navbar-right">
+            <ul class="nav navbar-nav nav-pills navbar-left">
                 <li ui-sref-active="active">
                     <a ui-sref="home">
                         <span class="glyphicon glyphicon-home"></span>
