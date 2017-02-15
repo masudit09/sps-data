@@ -1,11 +1,20 @@
-<div class="section">
-    <h3>{{headingTitle}}</h3>
-    <div>
-        <ul type="square">
-            <li>Luke</li>
-            <li>Darth</li>
-            <li>Anakin</li>
-            <li>Leia</li>
-        </ul>
-    </div>
-</div>
+<table class="table">
+    <thead>
+    <th>UserName</th>
+    <th>fullName</th>
+    <th>Active</th>
+    <th>Action</th>
+    </thead>
+    <tr ng-repeat="user in users">
+        <td >{{user.username}}</td>
+        <td >{{user.fullName}}</td>
+        <td >{{user.enabled}}</td>
+        <td >Edit</td>
+    </tr>
+</table>
+<pagination
+            ng-model="currentPage"
+            total-items="totalElement"
+            max-size="maxSize"
+            boundary-links="true">
+</pagination>

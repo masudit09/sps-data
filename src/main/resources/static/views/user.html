@@ -1,0 +1,9 @@
+<ul>
+    <li ng-repeat="todo in users">{{todo.text}}</li>
+</ul>
+<pagination
+        ng-model="currentPage"
+        total-items="totalElement"
+        max-size="maxSize"
+        boundary-links="true">
+</pagination>

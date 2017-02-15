@@ -39,7 +39,20 @@ angular.module('app')
                 views: {
                     'content@': {
                         templateUrl: '/views/users.html',
-                        controller: 'usersController'
+                        controller: 'UserController'
+                    }
+                }
+            }).state('paginationTest', {
+                parent: 'account',
+                url: '/paginationTest.html',
+                data: {
+                    authorities: [],
+                    pageTitle: 'Login'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: '/views/paginationTest.html',
+                        controller: 'TodoController'
                     }
                 }
             });

@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -33,14 +34,12 @@ public class UserController {
     private AuthorityRepository authorityRepository;
 
     @RequestMapping
-    public String list() {
-        return "redirect:/user/page/1";
+    public ResponseEntity<ModelMap> list(ModelMap model) {
+       return paginationList(1,model);
     }
-
     @RequestMapping(value = "/page/{pageNumber}", method = RequestMethod.GET)
-    public ModelAndView paginationList(@PathVariable Integer pageNumber) {
+    public ResponseEntity<ModelMap> paginationList(@PathVariable Integer pageNumber, ModelMap model) {
 
-        Map<String, Object> model = new HashMap<String, Object>();
         PageRequest pageRequest = new PageRequest(pageNumber - 1, 20);
         Page<User> currentResults = userRepository.findAll(pageRequest);
 
@@ -56,7 +55,7 @@ public class UserController {
         model.put("endIndex", end);
         model.put("currentIndex", current);
 
-        return new ModelAndView("user/list", model);
+        return new ResponseEntity<ModelMap>(model,HttpStatus.OK);
     }
 
     @RequestMapping(params = "form", method = RequestMethod.GET)
