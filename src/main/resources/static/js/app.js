@@ -1,6 +1,6 @@
 var app=angular.module('app', ['LocalStorageModule', 'pascalprecht.translate',
     'ui.bootstrap', // for modal dialogs
-    'ngResource', 'ui.router', 'ngCookies']);
+    'ngResource', 'ui.router', 'ngCookies','blockUI']);
 
 app.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal) {
 

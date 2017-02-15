@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .controller('LoginController', function ($rootScope, $scope, $state,  Auth, $translate) {
+    .controller('LoginController', function ($rootScope, $scope, $state,  Auth, $translate,blockUI) {
         $scope.user = {};
         $scope.errors = {};
         console.log('click');
@@ -11,7 +11,7 @@ angular.module('app')
             angular.element('[ng-model="username"]').focus();
         });*/
         $scope.login = function (event) {
-
+            blockUI.start('Authenticating...');
             console.log({username: $scope.username,
                 password: $scope.password});
             event.preventDefault();
@@ -22,6 +22,7 @@ angular.module('app')
                 $scope.authenticationError = false;
 
                 console.log('login Success');
+                blockUI.stop();
                 $state.go('home');
 
                 //if ($rootScope.previousStateName === 'register') {
@@ -32,6 +33,7 @@ angular.module('app')
                 //}
             }).catch(function () {
                 console.log('login Error');
+                blockUI.stop();
                 $scope.authenticationError = true;
             });
         };

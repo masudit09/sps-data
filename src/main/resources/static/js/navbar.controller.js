@@ -21,7 +21,7 @@ angular.module('app')
          $scope.logout = function () {
              Auth.logout();
              $scope.username='Account';
-             $state.go('home');
+             $state.go('login');
          };
          $scope.submit = function () {
              var form = $scope.form;
