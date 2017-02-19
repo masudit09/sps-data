@@ -64,21 +64,22 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView create(@Valid User user, BindingResult result,
+    public ResponseEntity<User> create(@RequestBody User user, BindingResult result,
                                RedirectAttributes redirect) {
-        if (result.hasErrors()) {
+        /*if (result.hasErrors()) {
             return new ModelAndView("user/form", "formErrors",
                     result.getAllErrors());
-        }
+        }*/
 
         user = this.userRepository.save(user);
 
         updateAuthority(user.getUsername(),user.getRoles());
 
-        redirect.addFlashAttribute("globalMessage",
+       /* redirect.addFlashAttribute("globalMessage",
                 "Successfully Created/Edited a new user");
         return new ModelAndView("redirect:/user/view/{user.id}",
-                "user.id", user.getId());
+                "user.id", user.getId());*/
+       return new ResponseEntity<User>(user,HttpStatus.OK);
     }
     @RequestMapping(value = "/account", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getAccount() {

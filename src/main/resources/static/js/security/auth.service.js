@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Account) {
+    .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Register) {
         return {
             login: function (credentials, callback) {
                 var cb = callback || angular.noop;
@@ -63,7 +63,7 @@ angular.module('app')
                             }
                         }
                     });
-            }/*,
+            },
             createAccount: function (account, callback) {
                 var cb = callback || angular.noop;
 
@@ -75,7 +75,7 @@ angular.module('app')
                         this.logout();
                         return cb(err);
                     }.bind(this)).$promise;
-            },
+            }/*,
 
             updateAccount: function (account, callback) {
                 var cb = callback || angular.noop;
