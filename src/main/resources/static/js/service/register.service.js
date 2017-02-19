@@ -2,7 +2,7 @@
 
 angular.module('app')
     .factory('Register', function ($http, $resource) {
-        return $resource('api/user', {}, {
+        return $resource('api/user/register', {}, {
             'save'  : { method: 'POST', params: {}, format: 'json',
                 transformResponse: [function (data, headersGetter) {
                 console.log(data);

@@ -7,6 +7,8 @@ angular.module('app')
         $scope.doNotMatch = null;
         $scope.errorUserExists = null;
         $scope.user = {};
+        $scope.roles = ['ROLE_ADMINISTRATOR','ROLE_USER'];
+
         /*$timeout(function (){angular.element('[ng-model="registerAccount.login"]').focus();});*/
 
         /*$scope.matchPass=function(pass,conPass){
@@ -21,7 +23,7 @@ angular.module('app')
 
         $scope.register = function () {
             console.log('click');
-            if ($scope.user.password !== $scope.confirmPassword) {
+            if ($scope.user.plainPassword !== $scope.confirmPassword) {
                 $scope.doNotMatch = 'ERROR';
                 console.log('click');
 
@@ -31,10 +33,12 @@ angular.module('app')
                 $scope.error = null;
                 $scope.errorUserExists = null;
                 $scope.errorEmailExists = null;
-                $scope.user.activated = true;
-                $scope.user.activated = true;
-                $scope.user.status = true;
-                $scope.user.authorities = ["ROLE_USER"];
+                console.log($scope.user)
+                // $scope.user.activated = true;
+                //$scope.user.activated = true;
+                //$scope.user.enabled = true;
+                //$scope.user.plainPassword = $scope.user.password;
+                //$scope.user.roles = ["ROLE_USER"];
 
                 Auth.createAccount($scope.user).then(function () {
                     $scope.success = 'OK';

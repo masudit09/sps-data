@@ -9,6 +9,7 @@ import com.javacodegeeks.examples.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -63,9 +64,8 @@ public class UserController {
         return "user/form";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<User> create(@RequestBody User user, BindingResult result,
-                               RedirectAttributes redirect) {
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public ResponseEntity<User> create(@RequestBody User user, HttpRequest request) {
         /*if (result.hasErrors()) {
             return new ModelAndView("user/form", "formErrors",
                     result.getAllErrors());
