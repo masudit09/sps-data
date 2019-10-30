@@ -13,7 +13,7 @@ angular.module('app')
                     var params = $rootScope.toStateParams;
                     Auth.logout();
                     $rootScope.previousStateName = to;
-                    $rootScope.previousStateNameParams = params;
+                    $rootScope.previousStateParams = params;
                     $state.go('login');
                 }
                 return $q.reject(response);

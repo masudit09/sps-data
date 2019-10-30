@@ -4,62 +4,68 @@ var app=angular.module('app', ['LocalStorageModule', 'pascalprecht.translate',
 
 app.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal) {
 
-        $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
-            $rootScope.toState = toState;
-            $rootScope.toStateParams = toStateParams;
+    $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+        $rootScope.toState = toState;
+        $rootScope.toStateParams = toStateParams;
+        if (Principal.isIdentityResolved()) {
+            Auth.authorize();
+        }
 
-            console.log('called');
-            if (Principal.isIdentityResolved()) {
-                Auth.authorize();
+    });
+
+
+
+    $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+        var titleKey = 'Title' ;
+
+        // Remember previous state unless we've been redirected to login or we've just
+        // reset the state memory after logout. If we're redirected to login, our
+        // previousState is already set in the authExpiredInterceptor. If we're going
+        // to login directly, we don't want to be sent to some previous state anyway
+        if (toState.name != 'login' && $rootScope.previousStateName) {
+            $rootScope.previousStateName = fromState.name;
+            $rootScope.previousStateParams = fromParams;
+        }
+        // Set the page title key to the one configured in state or use default one
+
+        //updateTitle(titleKey);
+        console.log('finish');
+        console.log(toState);
+        console.log(fromState);
+    });
+
+    $rootScope.$on('$stateChangeError',  function(event, toState, toParams, fromState, fromParams,error) {
+        console.log(error);
+    });
+
+    // if the current translation changes, update the window title
+    // $rootScope.$on('$translateChangeSuccess', function() { updateTitle(); });
+
+
+    $rootScope.back = function() {
+        // If previous state is 'activate' or do not exist go to 'home'
+        if ($rootScope.previousStateName === 'activate' || $state.get($rootScope.previousStateName) === null) {
+            $state.go('dashboard');
+        } else {
+            console.log($rootScope.previousStateName)
+            console.log($rootScope.previousStateParams)
+            if(!$rootScope.previousStateName) {
+                $state.go('dashboard');
             }
-
-        });
-
-
-
-        $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-            var titleKey = 'Title' ;
-
-            // Remember previous state unless we've been redirected to login or we've just
-            // reset the state memory after logout. If we're redirected to login, our
-            // previousState is already set in the authExpiredInterceptor. If we're going
-            // to login directly, we don't want to be sent to some previous state anyway
-            if (toState.name != 'login' && $rootScope.previousStateName) {
-                $rootScope.previousStateName = fromState.name;
-                $rootScope.previousStateParams = fromParams;
-            }
-            // Set the page title key to the one configured in state or use default one
-
-            //updateTitle(titleKey);
-            console.log('finish');
-            console.log(toState);
-            console.log(fromState);
-        });
-
-        $rootScope.$on('$stateChangeError',  function(event, toState, toParams, fromState, fromParams,error) {
-            console.log(error);
-        });
-
-        // if the current translation changes, update the window title
-       // $rootScope.$on('$translateChangeSuccess', function() { updateTitle(); });
-
-
-        $rootScope.back = function() {
-            // If previous state is 'activate' or do not exist go to 'home'
-            if ($rootScope.previousStateName === 'activate' || $state.get($rootScope.previousStateName) === null) {
-                $state.go('home');
-            } else {
+            if($rootScope.previousStateName && $rootScope.previousStateParams) {
                 $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
             }
-        };
 
-        $rootScope.searchByTrackID = false;
+        }
+    };
 
-        $rootScope.logout = function () {
-            Auth.logout();
-            $state.go('home');
-        };
-    })
+    $rootScope.searchByTrackID = false;
+
+    $rootScope.logout = function () {
+        Auth.logout();
+        $state.go('home');
+    };
+})
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider,$translateProvider, $locationProvider) {
         // uncomment below to make alerts look like toast
         //AlertServiceProvider.showAsToast(true);
@@ -91,7 +97,7 @@ app.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal
 
         $httpProvider.interceptors.push('errorHandlerInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
-       /* $httpProvider.interceptors.push('notificationInterceptor');*/
+        /* $httpProvider.interceptors.push('notificationInterceptor');*/
 
     })
     .config(['$urlMatcherFactoryProvider', function($urlMatcherFactory) {

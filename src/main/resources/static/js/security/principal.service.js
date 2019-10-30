@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .factory('Principal', function Principal($q, Account) {
+    .factory('Principal', function Principal($q, $rootScope, Account) {
         var _identity,
             _authenticated = false;
 
@@ -67,6 +67,10 @@ angular.module('app')
                         _identity = null;
                         _authenticated = false;
                         deferred.resolve(_identity);
+                        if ($rootScope.toState.name != 'login') {
+                            $rootScope.previousStateName = $rootScope.toState;
+                            $rootScope.previousStateParams = $rootScope.toStateParams;
+                        }
                     });
                 return deferred.promise;
             }

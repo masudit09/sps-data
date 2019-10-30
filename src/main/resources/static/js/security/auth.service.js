@@ -32,7 +32,7 @@ angular.module('app')
                 Principal.authenticate(null);
                 // Reset state memory
                 $rootScope.previousStateName = undefined;
-                $rootScope.previousStateNameParams = undefined;
+                $rootScope.previousStateParams = undefined;
             },
 
             authorize: function (force) {
@@ -55,11 +55,13 @@ angular.module('app')
                             else {
                                 // user is not authenticated. stow the state they wanted before you
                                 // send them to the signin state, so you can return them when you're done
-                                $rootScope.previousStateName = $rootScope.toState;
-                                $rootScope.previousStateNameParams = $rootScope.toStateParams;
+                                if ($rootScope.toState.name != 'login') {
+                                    $rootScope.previousStateName = $rootScope.toState;
+                                    $rootScope.previousStateParams = $rootScope.toStateParams;
+                                                                    }
                                 console.log('unauthorized');
                                 // now, send them to the signin state so they can log in
-                                $state.go('login');
+                                $state.go('login', null, {reload:true});
                             }
                         }
                     });

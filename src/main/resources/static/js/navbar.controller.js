@@ -17,6 +17,23 @@ angular.module('app')
          });
         $scope.username='Account';
 
+        $scope.$on("updateUserName", function () {
+            Principal.identity().then(function (account) {
+                $scope.account = account;
+                console.log(account);
+                if (account) {
+
+                    $scope.username = account.username;
+                }
+                // $scope.userName= account.userName;
+            });
+            // if(!$scope.notificationRunniong) {
+            //     $rootScope.notificationRunniong = true;
+            //     $scope.notificationRunniong=true;
+            //     $scope.reload();
+            // }
+        });
+
 
          $scope.logout = function () {
              Auth.logout();
