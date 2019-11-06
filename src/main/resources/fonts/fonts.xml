@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+    <fontFamily name="Nikosh">
+        <normal><![CDATA[fonts/Nikosh.ttf]]></normal>
+        <pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+        <exportFonts>
+            <export key="net.sf.jasperreports.html">Nikosh</export>
+            <export key="net.sf.jasperreports.xhtml">Nikosh</export>
+        </exportFonts>
+    </fontFamily>
+</fontFamilies>
