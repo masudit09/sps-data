@@ -22,5 +22,17 @@ angular.module('app')
                         return $translate.refresh();
                     }]
                 }*/
-            });
+            }).state('change-password', {
+            parent: 'account',
+            url: '/change-password',
+            data: {
+                authorities: []
+            },
+            views: {
+                'content@': {
+                    templateUrl: '/views/user/change-password.html',
+                    controller: 'ChangePasswordController'
+                }
+            }
+        });
     });

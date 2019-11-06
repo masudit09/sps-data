@@ -54,4 +54,46 @@ angular.module('app')
                 });
             }
         };
+    }).controller('ChangePasswordController',
+       function ( $scope, $rootScope, $stateParams, User,Principal, Auth, $state, UserChangePassword) {
+        
+                   Principal.identity().then(function (account) {
+                           $scope.account = account;
+                           console.log(account);
+                       });
+        
+                   $scope.curPass;
+               $scope.matchPass = function (pass, conPass) {
+                       if (pass != conPass) {
+                               $scope.notMatched = true;
+                           } else {
+                               $scope.notMatched = false;
+                           }
+            
+                       };
+               var onSaveSuccess = function (result) {
+                       $rootScope.setSuccessMessage('Update Password Successful');
+                       $state.go('#');
+                   };
+        
+                   var onSaveError = function (result) {
+                       $rootScope.setErrorMessage('Update Password Failed');
+                       //$scope.isSaving = false;
+                       };
+        
+                   $scope.success = null;
+               $scope.error = null;
+               $scope.doNotMatch = null;
+        
+                   $scope.changePassword = function () {
+                       $scope.curPass = $scope.currentPassword;
+                       //console.log( $scope.curPass);
+                           if ($scope.password !== $scope.confirmPassword) {
+                               $scope.doNotMatch = 'ERROR';
+                           } else {
+                               $scope.doNotMatch = null;
+                               UserChangePassword.update({curPass:$scope.curPass, newPass:$scope.password},onSaveSuccess, onSaveError);
+                           }
+                   };
+
     });

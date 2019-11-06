@@ -22,11 +22,17 @@
                             <b class="caret"></b>
                         </span>
                                 </a>
-                                <ul class="dropdown-menu" style="width: 100%">
-                                    <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()"><span
+                                <ul class="dropdown-menu" style="width: 100%" ng-switch-when="true">
+                                    <li ui-sref-active="active" ><a href="" ui-sref="change-password" ><span
+                                            class="glyphicon glyphicon-log-out"></span>
+                                        &#xA0;<span >Change Password</span></a></li>
+                                    <li ui-sref-active="active"><a href="" ng-click="logout()"><span
                                             class="glyphicon glyphicon-log-out"></span>
                                         &#xA0;<span >Log out</span></a></li>
-                                    <li ui-sref-active="active" ng-switch-when="false">
+
+                                </ul>
+                                <ul class="dropdown-menu" style="width: 100%" ng-switch-when="false">
+                                    <li ui-sref-active="active" >
                                         <a ui-sref="login">
                                             <span class="glyphicon glyphicon-log-in"></span>
                                             <span>Login</span>

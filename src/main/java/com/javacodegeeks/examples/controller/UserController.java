@@ -138,4 +138,16 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/change-password")
+    public ResponseEntity<String> edit(@RequestParam("curPass") String curPass, @RequestParam("newPass") String newPass) {
+                User user = userRepository.findByUsername(Util.getCurrentUsername());
+                if(Util.getEncoder().matches(curPass, user.getPassword())) {
+                        user.setPassword(Util.getEncoder().encode(newPass));
+                        userRepository.save(user);
+                        return new ResponseEntity("Success", HttpStatus.OK);
+                    }
+        
+                        return new ResponseEntity("Success", HttpStatus.NOT_ACCEPTABLE);
+            }
+
 }

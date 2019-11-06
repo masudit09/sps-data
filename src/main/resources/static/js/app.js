@@ -58,6 +58,125 @@ app.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal
 
         }
     };
+    $rootScope.closeAlert = function() {
+        $('.message.error, .message.success, .message.warning').hide();
+        $rootScope.globalErrorMessage = '';
+        $rootScope.globalSuccessMessage = '';
+        $rootScope.globalWarningMessage = '';
+    }
+    $rootScope.setErrorMessage = function (message) {
+        $rootScope.closeAlert();
+        $('.message.error').show();
+        localStorage.setItem('globalErrorMessage', message);
+        $rootScope.globalErrorMessage= localStorage.getItem('globalErrorMessage');
+        setTimeout(function() { $(".message.error").hide(); }, 2000);
+    }
+    $rootScope.setFile = function ($file) {
+        var  attachment = {};
+        try {
+            if ($file) {
+                var fileReader = new FileReader();
+                fileReader.readAsDataURL($file);
+                fileReader.onload = function (e) {
+                    var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
+                    try {
+                        attachment.file = base64Data;
+                        attachment.fileContentType = $file.type;
+                        attachment.fileName = $file.name;
+                        attachment.showAddMore = true;
+                    } catch (e) {
+                        console.log("file upload error.....")
+                        console.log(e)
+                    }
+                };
+
+            }
+        } catch (e) {
+            console.log("file upload error.....")
+            console.log(e)
+        }
+        return attachment;
+    };
+    $rootScope.b64toBlob = function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+        var blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+    };
+
+    $rootScope.previewImage = function (content, contentType, name) {
+        var blob = $rootScope.b64toBlob(content, contentType);
+        $rootScope.viewerObject.content = (window.URL || window.webkitURL).createObjectURL(blob);
+        $rootScope.viewerObject.contentType = contentType;
+        $rootScope.viewerObject.pageTitle = name;
+        // call the modal
+        $rootScope.showFilePreviewModal();
+    };
+
+    $rootScope.viewerObject = {};
+    $rootScope.showFilePreviewModal = function()
+    {
+        $modal.open({
+            templateUrl: '/views/common-file-viewer.html',
+            controller: [
+                '$scope', '$modalInstance', function($scope, $modalInstance) {
+                    $scope.ok = function() {
+                        $rootScope.viewerObject = {};
+                        $modalInstance.close();
+                    };
+                    $scope.closeModal = function() {
+                        $rootScope.viewerObject = {};
+                        $modalInstance.dismiss();
+                    };
+                }
+            ]
+        });
+    };
+
+    $rootScope.confirmationObject = {};
+    $rootScope.showConfirmation = function()
+    {
+        $modal.open({
+            templateUrl: 'static/views/common-confirmation.html',
+            controller: [
+                '$scope', '$modalInstance', function($scope, $modalInstance) {
+                    $scope.ok = function() {
+                        $rootScope.confirmationObject = {};
+                        $modalInstance.close();
+                    };
+                    $scope.closeModal = function() {
+                        $rootScope.confirmationObject = {};
+                        $modalInstance.dismiss();
+                    };
+                }
+            ]
+        });
+    };
+
+    $rootScope.setSuccessMessage = function (message) {
+        $rootScope.closeAlert();
+        $('.message.success').show();
+        localStorage.setItem('globalSuccessMessage',message);
+        $rootScope.globalSuccessMessage= localStorage.getItem('globalSuccessMessage');
+        setTimeout(function() { $(".message.success").hide(); }, 2000);
+    };
 
     $rootScope.searchByTrackID = false;
 

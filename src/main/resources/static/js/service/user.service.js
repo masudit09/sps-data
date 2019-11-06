@@ -9,6 +9,14 @@ angular.module('app')
                     return data;
                 }].concat($http.defaults.transformResponse)}
         });
+    })
+    .factory('UserChangePassword', function ($http, $resource) {
+    return $resource('api/user/change-password', {}, {
+        'update'  : { method: 'GET',headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
+            transformResponse: [function (data, headersGetter) {
+                return data;
+            }].concat($http.defaults.transformResponse)}
     });
+});
 
 
