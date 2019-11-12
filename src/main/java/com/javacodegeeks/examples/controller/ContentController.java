@@ -1,32 +1,22 @@
 package com.javacodegeeks.examples.controller;
 
-import com.javacodegeeks.examples.entities.Assessee;
-import com.javacodegeeks.examples.entities.Authority;
-import com.javacodegeeks.examples.entities.User;
-import com.javacodegeeks.examples.enumeration.Role;
-import com.javacodegeeks.examples.repositories.AssesseeRepository;
-import com.javacodegeeks.examples.repositories.AuthorityRepository;
-import com.javacodegeeks.examples.repositories.UserRepository;
-import com.javacodegeeks.examples.util.Util;
+import com.javacodegeeks.examples.entities.Content;
+import com.javacodegeeks.examples.repositories.ContetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/assessee")
-public class AssesseeController {
+public class ContentController {
 
     @Autowired
-    private AssesseeRepository assesseeRepository;
+    private ContetRepository assesseeRepository;
 
     @RequestMapping
     public ResponseEntity<ModelMap> list(ModelMap model) {
@@ -36,7 +26,7 @@ public class AssesseeController {
     public ResponseEntity<ModelMap> paginationList(@PathVariable Integer pageNumber, ModelMap model) {
 
         PageRequest pageRequest = new PageRequest(pageNumber - 1, 20);
-        Page<Assessee> currentResults = assesseeRepository.findAll(pageRequest);
+        Page<Content> currentResults = assesseeRepository.findAll(pageRequest);
 
 
         model.put("users", currentResults);
@@ -54,20 +44,20 @@ public class AssesseeController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public ResponseEntity<Assessee> create(@RequestBody Assessee assessee, HttpRequest request) {
+    public ResponseEntity<Content> create(@RequestBody Content assessee, HttpRequest request) {
 
         assessee = assesseeRepository.save(assessee);
 
-       return new ResponseEntity<Assessee>(assessee,HttpStatus.OK);
+       return new ResponseEntity<Content>(assessee,HttpStatus.OK);
     }
 
     @RequestMapping("/{id}")
-    public ResponseEntity<Assessee> edit(@PathVariable("id") Integer id) {
-       Assessee assessee = assesseeRepository.findOne(id);
+    public ResponseEntity<Content> edit(@PathVariable("id") Integer id) {
+       Content assessee = assesseeRepository.findOne(id);
        if(assessee == null){
-           return new ResponseEntity<Assessee>(HttpStatus.NO_CONTENT);
+           return new ResponseEntity<Content>(HttpStatus.NO_CONTENT);
        }else {
-           return new ResponseEntity<Assessee>(assessee,HttpStatus.OK);
+           return new ResponseEntity<Content>(assessee,HttpStatus.OK);
        }
     }
 
