@@ -61,4 +61,12 @@ public class Chapter {
     public void setSerial(Integer serial) {
         this.serial = serial;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
