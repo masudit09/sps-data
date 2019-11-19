@@ -1,14 +1,16 @@
-<table class="table">
+<table class="table table-striped table-striped">
     <thead>
-    <th>UserName</th>
-    <th>fullName</th>
-    <th>Active</th>
+    <th>Name</th>
+    <th>Name Bangla</th>
+    <th>Title</th>
+    <th>Serial</th>
     <th>Action</th>
     </thead>
-    <tr ng-repeat="user in users">
-        <td >{{user.username}}</td>
-        <td >{{user.fullName}}</td>
-        <td >{{user.enabled}}</td>
+    <tr ng-repeat="chapter in chapters">
+        <td >{{chapter.name}}</td>
+        <td >{{chapter.nameBangla}}</td>
+        <td >{{chapter.title}}</td>
+        <td >{{chapter.serial}}</td>
         <td >Edit</td>
     </tr>
 </table>

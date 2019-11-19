@@ -32,6 +32,8 @@ public class Chapter {
     @Column(name = "TITLE")
     private String title;
 
+    public Chapter() {}
+
     public Long getId() {
         return id;
     }

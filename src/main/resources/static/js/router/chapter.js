@@ -22,7 +22,7 @@ angular.module('app')
                         return $translate.refresh();
                     }]
                 }*/
-            }).state('add-chapters', {
+            }).state('add-chapter', {
             parent: 'account',
             url: '/add-chapters',
             data: {

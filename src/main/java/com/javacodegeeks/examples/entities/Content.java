@@ -29,6 +29,8 @@ public class Content implements Serializable{
     @Column(name = "SERIAL")
     private Integer serial;
 
+    public Content() {}
+
     public Long getId() {
         return id;
     }

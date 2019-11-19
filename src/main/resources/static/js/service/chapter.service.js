@@ -2,7 +2,7 @@
 
 angular.module('app')
     .factory('Chapter', function ($http, $resource) {
-        return $resource('api/chapter/', {}, {
+        return $resource('api/chapter/:id', {}, {
             'get': {
                 method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
                 transformResponse: [function (data, headersGetter) {
