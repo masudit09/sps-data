@@ -11,12 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/chapter")
 public class ChapterController {
 
     @Autowired
-    private ContetRepository assesseeRepository;
+    private ContetRepository contetRepository;
 
     @RequestMapping
     public ResponseEntity<ModelMap> list(ModelMap model) {
@@ -26,7 +28,7 @@ public class ChapterController {
     public ResponseEntity<ModelMap> paginationList(@PathVariable Integer pageNumber, ModelMap model) {
 
         PageRequest pageRequest = new PageRequest(pageNumber - 1, 20);
-        Page<Content> currentResults = assesseeRepository.findAll(pageRequest);
+        Page<Content> currentResults = contetRepository.findAll(pageRequest);
 
 
         model.put("users", currentResults);
@@ -43,21 +45,21 @@ public class ChapterController {
         return new ResponseEntity<ModelMap>(model,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Content> create(@RequestBody Content assessee, HttpRequest request) {
 
-        assessee = assesseeRepository.save(assessee);
+        assessee = contetRepository.save(assessee);
 
        return new ResponseEntity<Content>(assessee,HttpStatus.OK);
     }
 
     @RequestMapping("/{id}")
-    public ResponseEntity<Content> edit(@PathVariable("id") Integer id) {
-       Content assessee = assesseeRepository.findOne(id);
+    public ResponseEntity<Content> edit(@PathVariable("id") Long id) {
+       Optional<Content> assessee = contetRepository.findById(id);
        if(assessee == null){
            return new ResponseEntity<Content>(HttpStatus.NO_CONTENT);
        }else {
-           return new ResponseEntity<Content>(assessee,HttpStatus.OK);
+           return new ResponseEntity<Content>(assessee.get(),HttpStatus.OK);
        }
     }
 

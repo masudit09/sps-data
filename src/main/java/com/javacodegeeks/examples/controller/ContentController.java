@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/assessee")
 public class ContentController {
@@ -52,12 +54,12 @@ public class ContentController {
     }
 
     @RequestMapping("/{id}")
-    public ResponseEntity<Content> edit(@PathVariable("id") Integer id) {
-       Content assessee = assesseeRepository.findOne(id);
+    public ResponseEntity<Content> edit(@PathVariable("id") Long id) {
+       Optional<Content> assessee = assesseeRepository.findById(id);
        if(assessee == null){
            return new ResponseEntity<Content>(HttpStatus.NO_CONTENT);
        }else {
-           return new ResponseEntity<Content>(assessee,HttpStatus.OK);
+           return new ResponseEntity<Content>(assessee.get(),HttpStatus.OK);
        }
     }
 

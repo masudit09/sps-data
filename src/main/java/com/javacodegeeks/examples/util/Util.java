@@ -1,6 +1,5 @@
 package com.javacodegeeks.examples.util;
 
-import com.javacodegeeks.examples.entities.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,11 +32,6 @@ public class Util {
 		}
 		return username;
 	}
-
-	public static User getCurrentUser() {
-		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	}
-
 
 	private static Object getCurrentPrincipal() {
 		return getAuthentication() == null ? null : getAuthentication().getPrincipal();

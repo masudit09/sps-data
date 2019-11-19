@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('app')
-    .controller('MainController', function ($scope, $stateParams , $state, Principal) {
-        Principal.identity().then(function (account) {
-            $scope.account = account;
-            $scope.isAuthenticated = Principal.isAuthenticated;
-        });
+    .controller('MainController', function ($scope, $stateParams , $state) {
+        // Principal.identity().then(function (account) {
+        //     $scope.account = account;
+        //     $scope.isAuthenticated = Principal.isAuthenticated;
+        // });
 
 
 

@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-md-2 text-right">
                     <div class="user-area">
-                        <ul class="nav navbar top-nav" ng-switch="isAuthenticated()" style="width: 100%">
+                        <ul class="nav navbar top-nav" style="width: 100%">
                             <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
@@ -22,7 +22,7 @@
                             <b class="caret"></b>
                         </span>
                                 </a>
-                                <ul class="dropdown-menu" style="width: 100%" ng-switch-when="true">
+                                <ul class="dropdown-menu" style="width: 100%">
                                     <li ui-sref-active="active" ><a href="" ui-sref="change-password" ><span
                                             class="glyphicon glyphicon-log-out"></span>
                                         &#xA0;<span >Change Password</span></a></li>
@@ -31,7 +31,7 @@
                                         &#xA0;<span >Log out</span></a></li>
 
                                 </ul>
-                                <ul class="dropdown-menu" style="width: 100%" ng-switch-when="false">
+                                <ul class="dropdown-menu" style="width: 100%">
                                     <li ui-sref-active="active" >
                                         <a ui-sref="login">
                                             <span class="glyphicon glyphicon-log-in"></span>
@@ -67,7 +67,7 @@
             </button>
             <!--<a class="navbar-brand" href="#/"><span class="site-name" >Home</span>  </a>-->
         </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
+        <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav nav-pills navbar-left">
                 <li ui-sref-active="active">
                     <a ui-sref="home">
@@ -76,25 +76,25 @@
                     </a>
                 </li>
 
-            <li ui-sref-active="active" ng-switch-when="true"
+            <li ui-sref-active="active"
                 class="dropdown pointer">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>
                                     <span class="glyphicon glyphicon-tower"></span>
-                                    <span class="hidden-tablet" >User Management</span>
+                                    <span class="hidden-tablet" >Chapter</span>
                                     <b class="caret"></b>
                                 </span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a ui-sref="users"><span
+                        <a ui-sref="chapters"><span
                                 class="glyphicon glyphicon-dashboard"></span>
-                            &#xA0;<span >Users</span></a>
+                            &#xA0;<span >Chapter</span></a>
                     </li>
                     <li>
-                        <a ui-sref="register-user"><span
+                        <a ui-sref="add-chapter"><span
                                 class="glyphicon glyphicon-dashboard"></span>
-                            &#xA0;<span >register</span></a>
+                            &#xA0;<span >Add Chapter</span></a>
                     </li>
 
 

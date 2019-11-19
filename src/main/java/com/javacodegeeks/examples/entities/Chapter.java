@@ -3,11 +3,13 @@ package com.javacodegeeks.examples.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import static org.olap4j.metadata.XmlaConstants.Content.Data;
+
 /**
  * Created by rana on 11/12/19.
  */
 @Entity
-@Table(name = "CHAPTERS")
+@Table(name = "chapters")
 public class Chapter {
     private static final long serialVersionUID = 1L;
 

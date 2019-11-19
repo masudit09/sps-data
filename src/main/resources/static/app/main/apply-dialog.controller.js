@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app').controller('ApplyDialogController',
-    function ($scope, $state, $stateParams, Principal,JpEmployee, Auth, Language, $translate, EmployeeJobApplication, entity, Jobapplication, User, Job, DataUtils) {
+    function ($scope, $state, $stateParams, Principal, Language, $translate, EmployeeJobApplication, entity, Jobapplication, User, Job, DataUtils) {
 
 
         $scope.job = entity;

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * Created by rana on 2/19/17.
  */
 @Entity
-@Table(name = "CONTENTS")
+@Table(name = "contents")
 public class Content implements Serializable{
     private static final long serialVersionUID = 1L;
 

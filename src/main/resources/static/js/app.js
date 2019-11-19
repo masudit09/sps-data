@@ -2,14 +2,16 @@ var app=angular.module('app', ['LocalStorageModule', 'pascalprecht.translate',
     'ui.bootstrap', // for modal dialogs
     'ngResource', 'ui.router', 'ngCookies','blockUI']);
 
-app.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal) {
+app.run(function ($rootScope, $location, $window, $http, $state) {
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
         $rootScope.toState = toState;
         $rootScope.toStateParams = toStateParams;
-        if (Principal.isIdentityResolved()) {
-            Auth.authorize();
-        }
+        // if (Principal.isIdentityResolved()) {
+        //     Auth.authorize();
+        // }
+        console.log('finish');
+        console.log(toState);
 
     });
 
@@ -18,17 +20,6 @@ app.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal
     $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
         var titleKey = 'Title' ;
 
-        // Remember previous state unless we've been redirected to login or we've just
-        // reset the state memory after logout. If we're redirected to login, our
-        // previousState is already set in the authExpiredInterceptor. If we're going
-        // to login directly, we don't want to be sent to some previous state anyway
-        if (toState.name != 'login' && $rootScope.previousStateName) {
-            $rootScope.previousStateName = fromState.name;
-            $rootScope.previousStateParams = fromParams;
-        }
-        // Set the page title key to the one configured in state or use default one
-
-        //updateTitle(titleKey);
         console.log('finish');
         console.log(toState);
         console.log(fromState);
@@ -204,13 +195,6 @@ app.run(function ($rootScope, $location, $window, $http, $state, Auth, Principal
                     templateUrl: '/views/navbar.html',
                     controller: 'NavbarController'
                 }
-            },
-            resolve: {
-                authorize: ['Auth',
-                    function (Auth) {
-                        return Auth.authorize();
-                    }
-                ]
             }
         });
 
