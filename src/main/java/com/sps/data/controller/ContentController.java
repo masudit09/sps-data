@@ -1,7 +1,7 @@
-package com.javacodegeeks.examples.controller;
+package com.sps.data.controller;
 
-import com.javacodegeeks.examples.entities.Content;
-import com.javacodegeeks.examples.repositories.ContetRepository;
+import com.sps.data.entities.Content;
+import com.sps.data.repositories.ContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/assessee")
+@RequestMapping("/api/content")
 public class ContentController {
 
     @Autowired
-    private ContetRepository assesseeRepository;
+    private ContentRepository assesseeRepository;
 
     @RequestMapping
     public ResponseEntity<ModelMap> list(ModelMap model) {

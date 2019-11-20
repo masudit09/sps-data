@@ -1,4 +1,4 @@
-package com.javacodegeeks.examples;
+package com.sps.data;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("com.javacodegeeks.examples")
+@ComponentScan("com.sps.data")
 public class WebAppInitializer extends WebMvcConfigurerAdapter  {
 
     public static void main(String[] args) throws Exception{

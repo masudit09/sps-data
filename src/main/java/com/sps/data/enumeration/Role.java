@@ -1,4 +1,4 @@
-package com.javacodegeeks.examples.enumeration;
+package com.sps.data.enumeration;
 
 public enum Role {
 	ROLE_ADMINISTRATOR("ADMINISTRATOR"),

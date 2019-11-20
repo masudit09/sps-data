@@ -1,22 +1,21 @@
-package com.javacodegeeks.examples.entities;
+package com.sps.data.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import static org.olap4j.metadata.XmlaConstants.Content.Data;
+import java.io.Serializable;
 
 /**
- * Created by rana on 11/12/19.
+ * Created by rana on 2/19/17.
  */
 @Entity
-@Table(name = "chapters")
-public class Chapter {
+@Table(name = "CONTENTS")
+public class Content implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    @SequenceGenerator(name = "CHAPTERS_SEQUENCE_GENERATOR", sequenceName = "CHAPTERS_ID_SEQUENCE")
+    @SequenceGenerator(name = "CONTENTS_SEQUENCE_GENERATOR", sequenceName = "CONTENTS_ID_SEQUENCE")
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CHAPTERS_SEQUENCE_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CONTENTS_SEQUENCE_GENERATOR")
     private Long id;
 
     @NotNull
@@ -29,10 +28,11 @@ public class Chapter {
     @Column(name = "SERIAL")
     private Integer serial;
 
-    @Column(name = "TITLE")
-    private String title;
+    @ManyToOne
+    @JoinColumn(name = "CHAPTER_ID")
+    private Chapter chapter;
 
-    public Chapter() {}
+    public Content() {}
 
     public Long getId() {
         return id;
@@ -66,11 +66,11 @@ public class Chapter {
         this.serial = serial;
     }
 
-    public String getTitle() {
-        return title;
+    public Chapter getChapter() {
+        return chapter;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
     }
 }

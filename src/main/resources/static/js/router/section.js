@@ -3,34 +3,28 @@
 angular.module('app')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('chapters', {
+            .state('sections', {
                 parent: 'account',
-                url: '/chapters',
+                url: '/sections',
                 data: {
                     authorities: [],
                     pageTitle: 'register.title'
                 },
                 views: {
                     'content@': {
-                        templateUrl: '/views/list.html',
+                        templateUrl: '/views/section/list.html',
                         controller: 'ChapterController'
                     }
-                }/*,
-                resolve: {
-                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                        $translatePartialLoader.addPart('register');
-                        return $translate.refresh();
-                    }]
-                }*/
-            }).state('add-chapter', {
+                }
+            }).state('add-section', {
             parent: 'account',
-            url: '/add-chapter',
+            url: '/add-section',
             data: {
                 authorities: []
             },
             views: {
                 'content@': {
-                    templateUrl: '/views/add.html',
+                    templateUrl: '/views/section/add.html',
                     controller: 'ChapterAddController'
                 }
             }

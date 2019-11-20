@@ -1,16 +1,17 @@
-package com.javacodegeeks.examples.controller;
+package com.sps.data.controller;
 
-import com.javacodegeeks.examples.entities.Chapter;
-import com.javacodegeeks.examples.repositories.ChapterRepository;
+import com.sps.data.entities.Chapter;
+import com.sps.data.entities.Section;
+import com.sps.data.repositories.ChapterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -59,6 +60,12 @@ public class ChapterController {
        }else {
            return new ResponseEntity<Chapter>(assessee.get(),HttpStatus.OK);
        }
+    }
+
+    @RequestMapping("/find-all")
+    public ResponseEntity<List<Chapter>> findAll() {
+        List<Chapter> sectionList = chapterRepository.findAll();
+        return new ResponseEntity<List<Chapter>>(sectionList,HttpStatus.OK);
     }
 
 }

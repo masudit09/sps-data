@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('app')
-    .factory('Chapter', function ($http, $resource) {
-        return $resource('api/chapter/:id', {}, {
+    .factory('Section', function ($http, $resource) {
+        return $resource('api/section/:id', {}, {
             'get': {
                 method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
                 transformResponse: [function (data, headersGetter) {
@@ -32,8 +32,8 @@ angular.module('app')
                 }].concat($http.defaults.transformResponse)
             }
         });
-    }).factory('AllChapter', function ($http, $resource) {
-    return $resource('api/chapter/find-all', {}, {
+    }).factory('AllSection', function ($http, $resource) {
+    return $resource('api/section/find-all', {}, {
         'get': {
             method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
             transformResponse: [function (data, headersGetter) {

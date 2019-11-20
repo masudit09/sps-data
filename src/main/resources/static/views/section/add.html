@@ -1,0 +1,41 @@
+<div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel">
+                <!--<div class="panel-heading">Register</div>-->
+                <div class="panel-body">
+                    <form ng-show="!success" name="form" role="form" novalidate ng-submit="save()" show-validation>
+                        <div class="form-group">
+                            <label for="fullName">Name</label>
+                            <input type="text" class="form-control" id="fullName" name="fullName"
+                                   placeholder="Full Name"
+                                   ng-model="chapter.name">
+                        </div>
+                        <div class="form-group">
+                            <label for="nameBangla">Bangla Name</label>
+                            <input type="text" class="form-control" id="nameBangla" name="fullName"
+                                   placeholder="Full Name"
+                                   ng-model="chapter.nameBangla">
+                        </div>
+                        <div class="form-group">
+                            <label for="serial">Serial</label>
+                            <input type="number" id="serial" class="form-control"  name="serial" required
+                                   ng-model="chapter.serial">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text"  class="form-control"  id="title" name="title" required
+                                   ng-model="chapter.title">
+                        </div>
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+                    </form>
+
+                </div>
+            </div>
+            <p></p>
+        </div>
+        <div class="col-md-4">
+            <br/>
+        </div>
+    </div>
+</div>

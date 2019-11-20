@@ -1,22 +1,21 @@
-package com.javacodegeeks.examples.entities;
+package com.sps.data.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * Created by rana on 2/19/17.
  */
 @Entity
-@Table(name = "contents")
-public class Content implements Serializable{
+@Table(name = "SECTIONS")
+public class Section implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @SequenceGenerator(name = "CONTENTS_SEQUENCE_GENERATOR", sequenceName = "CONTENTS_ID_SEQUENCE")
+    @SequenceGenerator(name = "SECTION_SEQUENCE_GENERATOR", sequenceName = "SECTION_ID_SEQUENCE")
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CONTENTS_SEQUENCE_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "SECTION_SEQUENCE_GENERATOR")
     private Long id;
 
     @NotNull
@@ -29,7 +28,11 @@ public class Content implements Serializable{
     @Column(name = "SERIAL")
     private Integer serial;
 
-    public Content() {}
+    @ManyToOne
+    @JoinColumn(name = "CHAPTER_ID")
+    private Chapter chapter;
+
+    public Section() {}
 
     public Long getId() {
         return id;
@@ -61,5 +64,13 @@ public class Content implements Serializable{
 
     public void setSerial(Integer serial) {
         this.serial = serial;
+    }
+
+    public Chapter getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
     }
 }

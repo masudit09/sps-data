@@ -1,15 +1,13 @@
-
 <div class="dashbord">
 
-    <div class="container" style="width: 100%;padding: 0;" >
+    <div class="container" style="width: 100%;padding: 0;">
         <div class="cover-header-area">
 
             <div class="banner-area">
                 <div class="col-md-2" style=" padding-left: 10px;" ><img height="85px" width="170px"  src="/images/logo.jpg" alt=""/>
                 </div>
                 <div class="col-md-8 banner-heading text-center">
-                    <h2>Banner Of Company</h2>
-
+                    <h2>SPS Data</h2>
                 </div>
                 <div class="col-md-2 text-right">
                     <div class="user-area">
@@ -22,25 +20,25 @@
                             <b class="caret"></b>
                         </span>
                                 </a>
-                                <ul class="dropdown-menu" style="width: 100%">
-                                    <li ui-sref-active="active" ><a href="" ui-sref="change-password" ><span
-                                            class="glyphicon glyphicon-log-out"></span>
-                                        &#xA0;<span >Change Password</span></a></li>
-                                    <li ui-sref-active="active"><a href="" ng-click="logout()"><span
-                                            class="glyphicon glyphicon-log-out"></span>
-                                        &#xA0;<span >Log out</span></a></li>
+                                <!--<ul class="dropdown-menu" style="width: 100%">-->
+                                    <!--<li ui-sref-active="active"><a href="" ui-sref="change-password"><span-->
+                                            <!--class="glyphicon glyphicon-log-out"></span>-->
+                                        <!--&#xA0;<span>Change Password</span></a></li>-->
+                                    <!--<li ui-sref-active="active"><a href="" ng-click="logout()"><span-->
+                                            <!--class="glyphicon glyphicon-log-out"></span>-->
+                                        <!--&#xA0;<span>Log out</span></a></li>-->
 
-                                </ul>
-                                <ul class="dropdown-menu" style="width: 100%">
-                                    <li ui-sref-active="active" >
-                                        <a ui-sref="login">
-                                            <span class="glyphicon glyphicon-log-in"></span>
-                                            <span>Login</span>
-                                        </a>
-                                    </li>
+                                <!--</ul>-->
+                                <!--<ul class="dropdown-menu" style="width: 100%">-->
+                                    <!--<li ui-sref-active="active">-->
+                                        <!--<a ui-sref="login">-->
+                                            <!--<span class="glyphicon glyphicon-log-in"></span>-->
+                                            <!--<span>Login</span>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
 
 
-                                </ul>
+                                <!--</ul>-->
                             </li>
                         </ul>
 
@@ -51,8 +49,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 <!---=========  END HEADER AREA ========--->
 
@@ -76,31 +72,51 @@
                     </a>
                 </li>
 
-            <li ui-sref-active="active"
-                class="dropdown pointer">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                <li ui-sref-active="active"
+                    class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>
                                     <span class="glyphicon glyphicon-tower"></span>
-                                    <span class="hidden-tablet" >Chapter</span>
+                                    <span class="hidden-tablet">Chapter</span>
                                     <b class="caret"></b>
                                 </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a ui-sref="chapters"><span
-                                class="glyphicon glyphicon-dashboard"></span>
-                            &#xA0;<span >Chapter</span></a>
-                    </li>
-                    <li>
-                        <a ui-sref="add-chapter"><span
-                                class="glyphicon glyphicon-dashboard"></span>
-                            &#xA0;<span >Add Chapter</span></a>
-                    </li>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ui-sref="chapters"><span
+                                    class="glyphicon glyphicon-dashboard"></span>
+                                &#xA0;<span>Chapter List</span></a>
+                        </li>
+                        <li>
+                            <a ui-sref="add-chapter"><span
+                                    class="glyphicon glyphicon-dashboard"></span>
+                                &#xA0;<span>Add Chapter</span></a>
+                        </li>
+                    </ul>
+                </li>
 
-
-
-                </ul>
-            </li>
+                <li ui-sref-active="active"
+                    class="dropdown pointer">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                                <span>
+                                    <span class="glyphicon glyphicon-tower"></span>
+                                    <span class="hidden-tablet">Section</span>
+                                    <b class="caret"></b>
+                                </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ui-sref="sections"><span
+                                    class="glyphicon glyphicon-dashboard"></span>
+                                &#xA0;<span>Section List</span></a>
+                        </li>
+                        <li>
+                            <a ui-sref="add-section"><span
+                                    class="glyphicon glyphicon-dashboard"></span>
+                                &#xA0;<span>Add Section</span></a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

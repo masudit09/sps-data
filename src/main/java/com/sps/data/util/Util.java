@@ -1,4 +1,4 @@
-package com.javacodegeeks.examples.util;
+package com.sps.data.util;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,27 +18,6 @@ public class Util {
 	
 	public static PasswordEncoder getEncoder(){
 		return ENCODER;
-	}
-
-	public static String getCurrentUsername() {
-		String username = null;
-		if(getCurrentPrincipal() !=null){
-			Object principal = getCurrentPrincipal();
-			if (principal instanceof UserDetails) {
-				username = ((UserDetails) principal).getUsername();
-			} else {
-				username = principal.toString();
-			}
-		}
-		return username;
-	}
-
-	private static Object getCurrentPrincipal() {
-		return getAuthentication() == null ? null : getAuthentication().getPrincipal();
-	}
-
-	private static Authentication getAuthentication() {
-		return SecurityContextHolder.getContext().getAuthentication();
 	}
 
 }

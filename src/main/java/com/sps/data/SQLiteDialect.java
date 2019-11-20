@@ -1,4 +1,4 @@
-package com.javacodegeeks.examples;
+package com.sps.data;
 
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.function.SQLFunctionTemplate;
