@@ -24,32 +24,32 @@ public class SectionController {
     private SectionRepository sectionRepository;
 
     @RequestMapping
-    public ResponseEntity<ModelMap> list(ModelMap model) {
+    public ResponseEntity<Page> list(ModelMap model) {
        return paginationList(1,model);
     }
     @RequestMapping(value = "/page/{pageNumber}", method = RequestMethod.GET)
-    public ResponseEntity<ModelMap> paginationList(@PathVariable Integer pageNumber, ModelMap model) {
+    public ResponseEntity<Page> paginationList(@PathVariable Integer pageNumber, ModelMap model) {
 
         PageRequest pageRequest = new PageRequest(pageNumber - 1, 20);
         Page<Section> currentResults = sectionRepository.findAll(pageRequest);
 
 
-        model.put("users", currentResults);
+//        model.put("users", currentResults);
+//
+//        // Pagination variables
+//        int current = currentResults.getNumber() + 1;
+//        int begin = Math.max(1, current - 5);
+//        int end = Math.min(begin + 10, currentResults.getTotalPages());
+//
+//        model.put("beginIndex", begin);
+//        model.put("endIndex", end);
+//        model.put("currentIndex", current);
 
-        // Pagination variables
-        int current = currentResults.getNumber() + 1;
-        int begin = Math.max(1, current - 5);
-        int end = Math.min(begin + 10, currentResults.getTotalPages());
-
-        model.put("beginIndex", begin);
-        model.put("endIndex", end);
-        model.put("currentIndex", current);
-
-        return new ResponseEntity<ModelMap>(model,HttpStatus.OK);
+        return new ResponseEntity<Page>(currentResults,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public ResponseEntity<Section> create(@RequestBody Section section, HttpRequest request) {
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Section> create(@RequestBody Section section) {
 
         section = sectionRepository.save(section);
 

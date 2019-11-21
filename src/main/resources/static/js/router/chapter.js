@@ -12,7 +12,7 @@ angular.module('app')
                 },
                 views: {
                     'content@': {
-                        templateUrl: '/views/list.html',
+                        templateUrl: '/views/chapter/list.html',
                         controller: 'ChapterController'
                     }
                 }/*,
@@ -30,7 +30,7 @@ angular.module('app')
             },
             views: {
                 'content@': {
-                    templateUrl: '/views/add.html',
+                    templateUrl: '/views/chapter/add.html',
                     controller: 'ChapterAddController'
                 }
             }

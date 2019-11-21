@@ -1,4 +1,4 @@
-angular.module('app').controller('ChapterController', function($scope,Section) {
+angular.module('app').controller('SectionController', function($scope,Section) {
 
     $scope.sections=[];
     $scope.currentPage = 0;
@@ -15,8 +15,8 @@ angular.module('app').controller('ChapterController', function($scope,Section) {
 
     })
 
-}).controller('SectionAddController', function($scope,$stateParams,$state, Chapter) {
-    $scope.section={};
+}).controller('SectionAddController', function($scope,$stateParams,$state, Section) {
+    $scope.object={};
 
     if($stateParams.id) {
         Section.get({id:$stateParams.id},function (data) {
@@ -25,7 +25,7 @@ angular.module('app').controller('ChapterController', function($scope,Section) {
     }
     var onSaveSuccess = function (data) {
         $scope.globalMessage = "Chapter Added Successfully";
-        $state.go('chapters',null, {reload:true})
+        $state.go('sections',null, {reload:true})
     };
 
     var onSaveError = function (result) {
@@ -33,8 +33,8 @@ angular.module('app').controller('ChapterController', function($scope,Section) {
         $state.formErrors = "Error Saving Chapter";
     };
     $scope.save = function() {
-        console.log($scope.itemType)
-        Section.save($scope.section, onSaveSuccess, onSaveError);
+        console.log($scope.object)
+        Section.save($scope.object, onSaveSuccess, onSaveError);
     };
 });
 

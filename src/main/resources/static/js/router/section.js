@@ -13,7 +13,7 @@ angular.module('app')
                 views: {
                     'content@': {
                         templateUrl: '/views/section/list.html',
-                        controller: 'ChapterController'
+                        controller: 'SectionController'
                     }
                 }
             }).state('add-section', {
@@ -25,7 +25,7 @@ angular.module('app')
             views: {
                 'content@': {
                     templateUrl: '/views/section/add.html',
-                    controller: 'ChapterAddController'
+                    controller: 'SectionAddController'
                 }
             }
         });
