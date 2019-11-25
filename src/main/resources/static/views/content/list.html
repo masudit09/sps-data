@@ -1,25 +1,23 @@
 <div class="panel panel-default">
     <div class="panel-heading caption-subject font-blue-dark bold uppercase">
         <span class="font-blue-dark">Section List</span>
-        <span class="pull-right"><a ui-sref="add-section"><span
-                class="font-blue-dark">Add New Section</span></a></span>
+        <span class="pull-right"><a ui-sref="add-content"><span
+                class="font-blue-dark">Add New Content</span></a></span>
     </div>
     <div class="panel-body">
         <table class="table table-bordered table-striped">
             <thead>
             <th>Chapter</th>
-            <th>Name</th>
-            <th>Name Bangla</th>
-            <th>Title</th>
+            <th>Section</th>
             <th>Serial</th>
+            <th>Content</th>
             <th>Action</th>
             </thead>
-            <tr ng-repeat="section in sections">
-                <td >{{section.chapter.name}}</td>
-                <td >{{section.name}}</td>
-                <td >{{section.nameBangla}}</td>
-                <td >{{section.title}}</td>
+            <tr ng-repeat="content in contents">
+                <td >{{content.section.chapter.nameBangla}}</td>
+                <td >{{content.section.header}}</td>
                 <td >{{section.serial}}</td>
+                <td >{{content.content}}</td>
                 <td >Edit</td>
             </tr>
         </table>

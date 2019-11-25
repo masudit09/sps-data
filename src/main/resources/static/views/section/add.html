@@ -2,9 +2,19 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel">
-                <!--<div class="panel-heading">Register</div>-->
+                <div class="panel-heading">
+                    <h4 class="modal-title" id="myentityLabel" >New Section</h4>
+                </div>
                 <div class="panel-body">
                     <form ng-show="!success" name="form" role="form" novalidate ng-submit="save()" show-validation>
+                        <div class="form-group">
+                            <label for="chapter">Chapter</label>
+                            <select id="chapter" name="chapter" class="form-control input-large"
+                                    ng-options="chapter.nameBangla for chapter in chapters track by chapter.serial"
+                                    ng-model="object.chapter" required>
+                                <option value="">Select Chapter</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="fullName">Name</label>
                             <input type="text" class="form-control" id="fullName" name="fullName"
@@ -27,7 +37,12 @@
                             <input type="text"  class="form-control"  id="title" name="title" required
                                    ng-model="object.title">
                         </div>
-                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+                        <div class="form-group">
+                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+                            <span class="pull-right"><a ui-sref="sections"><span
+                                    class="font-blue-dark">Back To Sections</span></a></span>
+                        </div>
+
                     </form>
 
                 </div>

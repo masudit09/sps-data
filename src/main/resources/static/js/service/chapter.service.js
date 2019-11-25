@@ -35,7 +35,7 @@ angular.module('app')
     }).factory('AllChapter', function ($http, $resource) {
     return $resource('api/chapter/find-all', {}, {
         'get': {
-            method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
+            method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json', isArray:true,
             transformResponse: [function (data, headersGetter) {
                 console.log(data);
                 return data;

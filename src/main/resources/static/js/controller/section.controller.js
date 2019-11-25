@@ -15,9 +15,13 @@ angular.module('app').controller('SectionController', function($scope,Section) {
 
     })
 
-}).controller('SectionAddController', function($scope,$stateParams,$state, Section) {
+}).controller('SectionAddController', function($scope,$stateParams,$state, Section, AllChapter) {
     $scope.object={};
+    $scope.chapters={};
 
+    AllChapter.get(function (data) {
+        $scope.chapters = data;
+    })
     if($stateParams.id) {
         Section.get({id:$stateParams.id},function (data) {
             $scope.section = data;

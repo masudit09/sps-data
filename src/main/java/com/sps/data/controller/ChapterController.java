@@ -30,19 +30,6 @@ public class ChapterController {
 
         PageRequest pageRequest = new PageRequest(pageNumber - 1, 20);
         Page<Chapter> currentResults = chapterRepository.findAll(pageRequest);
-
-
-//        model.put("users", currentResults);
-//
-//        // Pagination variables
-//        int current = currentResults.getNumber() + 1;
-//        int begin = Math.max(1, current - 5);
-//        int end = Math.min(begin + 10, currentResults.getTotalPages());
-//
-//        model.put("beginIndex", begin);
-//        model.put("endIndex", end);
-//        model.put("currentIndex", current);
-
         return new ResponseEntity<Page>(currentResults,HttpStatus.OK);
     }
 

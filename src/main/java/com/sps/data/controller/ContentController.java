@@ -1,7 +1,7 @@
 package com.sps.data.controller;
 
-import com.sps.data.entities.Content;
-import com.sps.data.repositories.ContentRepository;
+import com.sps.data.entities.Paragraph;
+import com.sps.data.repositories.ParagraphRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,48 +19,38 @@ import java.util.Optional;
 public class ContentController {
 
     @Autowired
-    private ContentRepository assesseeRepository;
+    private ParagraphRepository paragraphRepository;
 
     @RequestMapping
-    public ResponseEntity<ModelMap> list(ModelMap model) {
+    public ResponseEntity<Page> list(ModelMap model) {
        return paginationList(1,model);
     }
     @RequestMapping(value = "/page/{pageNumber}", method = RequestMethod.GET)
-    public ResponseEntity<ModelMap> paginationList(@PathVariable Integer pageNumber, ModelMap model) {
+    public ResponseEntity<Page> paginationList(@PathVariable Integer pageNumber, ModelMap model) {
 
         PageRequest pageRequest = new PageRequest(pageNumber - 1, 20);
-        Page<Content> currentResults = assesseeRepository.findAll(pageRequest);
-
+        Page<Paragraph> currentResults = paragraphRepository.findAll(pageRequest);
 
         model.put("users", currentResults);
 
-        // Pagination variables
-        int current = currentResults.getNumber() + 1;
-        int begin = Math.max(1, current - 5);
-        int end = Math.min(begin + 10, currentResults.getTotalPages());
-
-        model.put("beginIndex", begin);
-        model.put("endIndex", end);
-        model.put("currentIndex", current);
-
-        return new ResponseEntity<ModelMap>(model,HttpStatus.OK);
+        return new ResponseEntity<Page>(currentResults,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public ResponseEntity<Content> create(@RequestBody Content assessee, HttpRequest request) {
+    @RequestMapping(value = "",method = RequestMethod.POST)
+    public ResponseEntity<List<Paragraph>> create(@RequestBody List<Paragraph> paragraphs) {
 
-        assessee = assesseeRepository.save(assessee);
+        paragraphs = (List<Paragraph>) paragraphRepository.saveAll(paragraphs);
 
-       return new ResponseEntity<Content>(assessee,HttpStatus.OK);
+       return new ResponseEntity<List<Paragraph>>(paragraphs,HttpStatus.OK);
     }
 
     @RequestMapping("/{id}")
-    public ResponseEntity<Content> edit(@PathVariable("id") Long id) {
-       Optional<Content> assessee = assesseeRepository.findById(id);
+    public ResponseEntity<Paragraph> edit(@PathVariable("id") Long id) {
+       Optional<Paragraph> assessee = paragraphRepository.findById(id);
        if(assessee == null){
-           return new ResponseEntity<Content>(HttpStatus.NO_CONTENT);
+           return new ResponseEntity<Paragraph>(HttpStatus.NO_CONTENT);
        }else {
-           return new ResponseEntity<Content>(assessee.get(),HttpStatus.OK);
+           return new ResponseEntity<Paragraph>(assessee.get(),HttpStatus.OK);
        }
     }
 

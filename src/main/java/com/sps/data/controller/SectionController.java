@@ -1,6 +1,5 @@
 package com.sps.data.controller;
 
-import com.sps.data.entities.Content;
 import com.sps.data.entities.Section;
 import com.sps.data.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

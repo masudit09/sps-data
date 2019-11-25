@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel">
-                <!--<div class="panel-heading">Register</div>-->
+                <h4 class="modal-title" id="myentityLabel" >New Chapter</h4>
                 <div class="panel-body">
                     <form ng-show="!success" name="form" role="form" novalidate ng-submit="save()" show-validation>
                         <div class="form-group">
@@ -27,7 +27,12 @@
                             <input type="text"  class="form-control"  id="title" name="title" required
                                    ng-model="chapter.title">
                         </div>
-                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+                        <!--<button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>-->
+                        <div class="form-group">
+                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
+                            <span class="pull-right"><a ui-sref="chapters"><span
+                                    class="font-blue-dark">Back To Chapters</span></a></span>
+                        </div>
                     </form>
 
                 </div>

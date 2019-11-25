@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('app')
-    .factory('Section', function ($http, $resource) {
-        return $resource('api/section/:id', {}, {
+    .factory('Content', function ($http, $resource) {
+        return $resource('api/content/:id', {}, {
             'get': {
                 method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
                 transformResponse: [function (data, headersGetter) {
@@ -11,7 +11,7 @@ angular.module('app')
                 }].concat($http.defaults.transformResponse)
             },
             'save': {
-                method: 'POST', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
+                method: 'POST', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json', isArray:true,
                 transformResponse: [function (data, headersGetter) {
                     console.log(data);
                     return data;
@@ -32,10 +32,10 @@ angular.module('app')
                 }].concat($http.defaults.transformResponse)
             }
         });
-    }).factory('AllSection', function ($http, $resource) {
-    return $resource('api/section/find-all', {}, {
+    }).factory('AllContent', function ($http, $resource) {
+    return $resource('api/content/find-all', {}, {
         'get': {
-            method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',isArray:true,
+            method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
             transformResponse: [function (data, headersGetter) {
                 console.log(data);
                 return data;

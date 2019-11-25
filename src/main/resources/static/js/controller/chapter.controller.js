@@ -36,5 +36,10 @@ angular.module('app').controller('ChapterController', function($scope,Chapter) {
         console.log($scope.itemType)
         Chapter.save($scope.chapter, onSaveSuccess, onSaveError);
     };
+}).controller('PreviewBookController', function($scope,$stateParams,$state, AllChapter) {
+    $scope.chapters = [];
+    AllChapter.get(function (data) {
+        $scope.chapters = data;
+    })
 });
 

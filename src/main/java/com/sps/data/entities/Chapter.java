@@ -1,7 +1,13 @@
 package com.sps.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.olap4j.metadata.XmlaConstants.Content.Data;
 
@@ -31,6 +37,10 @@ public class Chapter {
 
     @Column(name = "TITLE")
     private String title;
+
+    @JsonIgnoreProperties("chapter")
+    @OneToMany(mappedBy = "chapter", fetch = FetchType.LAZY)
+    private List<Section> sections = new ArrayList<Section>();
 
     public Chapter() {}
 
@@ -72,5 +82,13 @@ public class Chapter {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
     }
 }

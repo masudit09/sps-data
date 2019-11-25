@@ -1,8 +1,14 @@
 package com.sps.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rana on 2/19/17.
@@ -28,9 +34,14 @@ public class Section implements Serializable {
     @Column(name = "SERIAL")
     private Integer serial;
 
+    @JsonIgnoreProperties("chapter")
     @ManyToOne
     @JoinColumn(name = "CHAPTER_ID")
     private Chapter chapter;
+
+    @JsonIgnoreProperties("section")
+    @OneToMany(mappedBy = "section", fetch = FetchType.LAZY)
+    private List<Paragraph> paragraphs = new ArrayList<Paragraph>();
 
     public Section() {}
 
@@ -72,5 +83,18 @@ public class Section implements Serializable {
 
     public void setChapter(Chapter chapter) {
         this.chapter = chapter;
+    }
+
+    public List<Paragraph> getParagraphs() {
+        return paragraphs;
+    }
+
+    public void setParagraphs(List<Paragraph> paragraphs) {
+        this.paragraphs = paragraphs;
+    }
+
+    public String getHeader() {
+
+        return (this.getChapter() != null? this.getChapter().getSerial():"")+"." + this.serial +" "+ this.nameBangla;
     }
 }

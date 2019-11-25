@@ -3,17 +3,17 @@
     angular.module('app')
         .config(function ($stateProvider) {
             $stateProvider
-                .state('chapters', {
+                .state('contents', {
                     parent: 'account',
-                    url: '/chapters',
+                    url: '/contents',
                     data: {
                         authorities: [],
                         pageTitle: 'register.title'
                     },
                     views: {
                         'content@': {
-                            templateUrl: '/views/chapter/list.html',
-                            controller: 'ChapterController'
+                            templateUrl: '/views/content/list.html',
+                            controller: 'ContentController'
                         }
                     }/*,
                     resolve: {
@@ -22,28 +22,16 @@
                             return $translate.refresh();
                         }]
                     }*/
-                }).state('add-chapter', {
+                }).state('add-content', {
                 parent: 'account',
-                url: '/add-chapter',
+                url: '/add-content',
                 data: {
                     authorities: []
                 },
                 views: {
                     'content@': {
-                        templateUrl: '/views/chapter/add.html',
-                        controller: 'ChapterAddController'
-                    }
-                }
-            }).state('preview-book', {
-                parent: 'account',
-                url: '/preview-book',
-                data: {
-                    authorities: []
-                },
-                views: {
-                    'content@': {
-                        templateUrl: '/views/preview-book.html',
-                        controller: 'PreviewBookController'
+                        templateUrl: '/views/content/add.html',
+                        controller: 'ContentAddController'
                     }
                 }
             });
