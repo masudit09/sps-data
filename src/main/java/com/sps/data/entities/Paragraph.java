@@ -25,14 +25,13 @@ public class Paragraph implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "PARAGRAPH_SEQUENCE_GENERATOR")
     private Long id;
 
-    @Column(name = "HEADER_CHAR")
-    private String headerChar;
+    @Column(name = "HEADER")
+    private String header;
 
     @Column(name = "SERIAL")
     private Integer serial;
 
     @Column(name = "content")
-    @Lob
     private String content;
 
     @Column(name = "HAS_INDEX")
@@ -45,7 +44,7 @@ public class Paragraph implements Serializable {
     @Column(name = "INDEX_CHAR")
     private String indexChar;
 
-    @JsonIgnoreProperties("section")
+    @JsonIgnoreProperties("paragraphs")
     @ManyToOne
     @JoinColumn(name = "SECTION_ID")
     private Section section;
@@ -61,12 +60,12 @@ public class Paragraph implements Serializable {
         this.id = id;
     }
 
-    public String getHeaderChar() {
-        return headerChar;
+    public String getHeader() {
+        return header;
     }
 
-    public void setHeaderChar(String headerChar) {
-        this.headerChar = headerChar;
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public String getContent() {

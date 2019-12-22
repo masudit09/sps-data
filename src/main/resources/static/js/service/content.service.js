@@ -42,6 +42,15 @@ angular.module('app')
             }].concat($http.defaults.transformResponse)
         }
     })
+}).factory('PaginationContent', function ($http, $resource) {
+    return $resource('/api/content/page/:page_num', {}, {
+        'get': {
+            method: 'GET', params: {}, format: 'json',
+            transformResponse: [function (data, headersGetter) {
+                return data;
+            }].concat($http.defaults.transformResponse)
+        }
+    });
 })
 ;
 

@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading caption-subject font-blue-dark bold uppercase">
-        <span class="font-blue-dark">Section List</span>
+        <span class="font-blue-dark">Paragraph List</span>
         <span class="pull-right"><a ui-sref="add-content"><span
                 class="font-blue-dark">Add New Content</span></a></span>
     </div>
@@ -9,20 +9,24 @@
             <thead>
             <th>Chapter</th>
             <th>Section</th>
-            <th>Serial</th>
+            <th>Header</th>
             <th>Content</th>
             <th>Action</th>
             </thead>
             <tr ng-repeat="content in contents">
                 <td >{{content.section.chapter.nameBangla}}</td>
                 <td >{{content.section.header}}</td>
-                <td >{{section.serial}}</td>
+                <td >{{section.headerChar}}</td>
                 <td >{{content.content}}</td>
                 <td >Edit</td>
             </tr>
         </table>
-        <div align="center"><pagination  ng-model="currentPage" total-items="totalElement"  max-size="maxSize"
-                                         boundary-links="true"> </pagination></div>
+        <div align="center"><pagination  ng-model="currentPage"
+                                         total-items="totalElement"
+                                         items-per-page="itemsPerPage"
+                                         max-size="maxSize"
+                                         boundary-links="true"
+                                         ng-change="pageChanged()"> </pagination></div>
     </div>
 </div>
 

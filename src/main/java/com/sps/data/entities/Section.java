@@ -34,7 +34,7 @@ public class Section implements Serializable {
     @Column(name = "SERIAL")
     private Integer serial;
 
-    @JsonIgnoreProperties("chapter")
+    @JsonIgnoreProperties("sections")
     @ManyToOne
     @JoinColumn(name = "CHAPTER_ID")
     private Chapter chapter;

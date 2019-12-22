@@ -1,19 +1,26 @@
-angular.module('app').controller('ContentController', function($scope,Content) {
+angular.module('app').controller('ContentController', function($scope,Content, PaginationContent) {
 
     $scope.contents=[];
     $scope.currentPage = 0;
     $scope.numPerPage = 0;
     $scope.maxSize = 0;
     $scope.totalElement = 0;
+    $scope.itemsPerPage = 20;
     Content.get(function (data) {
-        console.log(data)
         $scope.contents = data.content;
+        $scope.currentPage = data.number+1;
         $scope.numPerPage = data.size;
         $scope.maxSize = 20;
         $scope.currentPage = data.currentIndex;
         $scope.totalElement = data.totalElements;
 
     })
+    $scope.pageChanged = function() {
+        PaginationContent.get({page_num:$scope.currentPage},function (data) {
+            console.log(data);
+            $scope.contents = data.content;
+        })
+    };
 
 }).controller('ContentAddController', function($scope,$stateParams,$state, Content, AllSection) {
     $scope.objects=[{section:{}}];

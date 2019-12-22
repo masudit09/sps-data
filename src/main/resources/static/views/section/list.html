@@ -8,23 +8,23 @@
         <table class="table table-bordered table-striped">
             <thead>
             <th>Chapter</th>
-            <th>Name</th>
-            <th>Name Bangla</th>
+            <th>Section Name</th>
             <th>Title</th>
-            <th>Serial</th>
             <th>Action</th>
             </thead>
             <tr ng-repeat="section in sections">
-                <td >{{section.chapter.name}}</td>
-                <td >{{section.name}}</td>
-                <td >{{section.nameBangla}}</td>
+                <td >{{section.chapter.title}} - {{section.chapter.nameBangla}}</td>
+                <td >{{section.header}}</td>
                 <td >{{section.title}}</td>
-                <td >{{section.serial}}</td>
                 <td >Edit</td>
             </tr>
         </table>
-        <div align="center"><pagination  ng-model="currentPage" total-items="totalElement"  max-size="maxSize"
-                                         boundary-links="true"> </pagination></div>
+        <div align="center"><pagination  ng-model="currentPage"
+                                         total-items="totalElement"
+                                         items-per-page="itemsPerPage"
+                                         max-size="maxSize"
+                                         boundary-links="true"
+                                         ng-change="pageChanged()"> </pagination></div>
     </div>
 </div>
 
