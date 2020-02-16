@@ -49,6 +49,11 @@ public class Paragraph implements Serializable {
     @JoinColumn(name = "SECTION_ID")
     private Section section;
 
+    @Column(name = "HAS_IMAGE")
+    private Boolean hasImage = false;
+
+    @Transient
+    private byte[] image;
 
     public Paragraph() {}
 
@@ -114,5 +119,21 @@ public class Paragraph implements Serializable {
 
     public void setIndexChar(String indexChar) {
         this.indexChar = indexChar;
+    }
+
+    public Boolean getHasImage() {
+        return hasImage;
+    }
+
+    public void setHasImage(Boolean hasImage) {
+        this.hasImage = hasImage;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

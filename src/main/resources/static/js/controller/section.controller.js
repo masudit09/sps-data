@@ -26,6 +26,12 @@ angular.module('app').controller('SectionController', function($scope,Section, P
     $scope.object={};
     $scope.chapters={};
 
+    if($stateParams.id) {
+        Section.get({id:$stateParams.id},function (data) {
+            $scope.object = data;
+        })
+    }
+
     AllChapter.get(function (data) {
         $scope.chapters = data;
     })

@@ -10,11 +10,10 @@
                         <div class="form-group">
                             <label for="chapter">Chapter</label>
                             <select id="chapter" name="chapter" class="form-control input-large"
-                                    ng-options="section.header for section in sections track by section.serial"
+                                    ng-options="section.header for section in sections track by section.id"
                                     ng-model="section" required>
                                 <option value="">Select Section</option>
                             </select>
-                            <button type="button" ng-click="addMoreContent()" class="btn btn-primary pull-right">Add More</button>
 
                         </div>
                         <div class="panel panel-default " ng-repeat="object in objects">
@@ -32,14 +31,25 @@
                                     <input type="number" id="serial" class="form-control" name="serial" required
                                            ng-model="object.serial">
                                 </div>
+
+                            </div>
+                            <div class="row panel-body">
                                 <div class="form-group col-md-2" style="margin-top: 25px;">
                                     <label for="hasIndex">
                                         <input type="checkbox" name="hasIndex" ID="hasIndex"
                                                placeholder="Has Index"
                                                ng-model="object.hasIndex" value="true"> Has Index</label>
                                 </div>
+
+
+                                <div class="form-group col-md-2" style="margin-top: 25px;">
+                                    <label for="hasImage">
+                                        <input type="checkbox" name="hasImage" ID="hasImage"
+                                               placeholder="Has Index"
+                                               ng-model="object.hasImage" value="true"> Has Image</label>
+                                </div>
                             </div>
-                            <div class="row">
+                            <div class="row panel-body">
 
                                 <div class="form-group col-md-4" ng-show="object.hasIndex">
                                     <label for="indexType">Index Type</label>
@@ -61,18 +71,32 @@
                                            ng-model="object.indexChar">
                                 </div>
                             </div>
-                            <div class="row panel-body">
+                            <div class="row panel-body" ng-hide="object.hasImage">
                                 <div class="form-group col-md-8">
                                     <label for="content">Content</label>
-                                    <textarea rows="3" class="form-control" id="content" name="content" required
+                                    <textarea rows="3" class="form-control" id="content" name="content"
+                                              ng-required="object.hasImage == false"
                                               ng-model="object.content"></textarea>
                                 </div>
                             </div>
+                            <div class="row panel-body" ng-show="object.hasImage">
+                                <div class="form-group col-md-8">
+                                    <label for="content">Image {{object.hasImage == true}}</label>
+                                    <input type="file" ngf-select class=" form-control"
+                                           ngf-change="uploadFile($file)"
+                                           id="image" name="image"
+                                           required="object.hasImage"
+                                           ng-model="object.image">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-7">
                             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
                             <span class="pull-right"><a ui-sref="contents"><span
                                     class="font-blue-dark">Back To Contents</span></a></span>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <button ng-hide="hideAddMore" type="button" ng-click="addMoreContent()" class="btn btn-primary pull-right">Add More</button>
                         </div>
 
                     </form>

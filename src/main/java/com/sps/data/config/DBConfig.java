@@ -5,14 +5,24 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 
-
+@Configuration
 public class DBConfig {
 
-	public static DataSource getDataSource() {
+	@Bean("sqliteDbConnection")
+	public  Connection getConnection() {
 	        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
 	        dataSourceBuilder.driverClassName("org.sqlite.JDBC");
-	        dataSourceBuilder.url("jdbc:sqlite:mydb.db");
-	        return dataSourceBuilder.build();   
+	        dataSourceBuilder.url("jdbc:sqlite:"+PropertyConfig.getStringProperties("sqlite.file.name"));
+			DataSource dataSource = dataSourceBuilder.build();
+			Connection con = null;
+			try {
+				con = dataSource.getConnection();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+
+			return con;
 	}
 }

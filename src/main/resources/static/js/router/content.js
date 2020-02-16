@@ -24,7 +24,7 @@
                     }*/
                 }).state('add-content', {
                 parent: 'account',
-                url: '/add-content',
+                url: '/add-content/{id}',
                 data: {
                     authorities: []
                 },

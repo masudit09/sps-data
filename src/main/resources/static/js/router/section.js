@@ -18,7 +18,7 @@ angular.module('app')
                 }
             }).state('add-section', {
             parent: 'account',
-            url: '/add-section',
+            url: '/add-section/{id}',
             data: {
                 authorities: []
             },

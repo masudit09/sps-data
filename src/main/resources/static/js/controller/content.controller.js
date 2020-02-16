@@ -26,7 +26,26 @@ angular.module('app').controller('ContentController', function($scope,Content, P
     $scope.objects=[{section:{}}];
     $scope.section=null;
     $scope.sections={};
+    $scope.hideAddMore = false;
+    $scope.attachment = null;
 
+
+    if($stateParams.id) {
+        $scope.objects = [];
+        $scope.hideAddMore = true;
+        Content.get({id:$stateParams.id},function (data) {
+            $scope.objects.push(data);
+            $scope.section = data.section
+        })
+    }
+    $scope.uploadFile = function ($file) {
+        console.log("clicked")
+        $scope.$apply(function () {
+            console.log($file)
+            $scope.attachment = $rootScope.setFile($file);
+            console.log($scope.attachment)
+        });
+    };
     AllSection.get(function (data) {
         $scope.sections = data;
     })
