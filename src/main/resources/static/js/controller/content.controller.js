@@ -1,4 +1,4 @@
-angular.module('app').controller('ContentController', function($scope,Content, PaginationContent) {
+angular.module('app').controller('ContentController', function($scope, AllChapter, Content, PaginationContent, ChapterWiseContent) {
 
     $scope.contents=[];
     $scope.currentPage = 0;
@@ -6,6 +6,7 @@ angular.module('app').controller('ContentController', function($scope,Content, P
     $scope.maxSize = 0;
     $scope.totalElement = 0;
     $scope.itemsPerPage = 20;
+    $scope.chapter = null;
     Content.get(function (data) {
         $scope.contents = data.content;
         $scope.currentPage = data.number+1;
@@ -15,19 +16,48 @@ angular.module('app').controller('ContentController', function($scope,Content, P
         $scope.totalElement = data.totalElements;
 
     })
+    AllChapter.get(function (data) {
+        $scope.chapters = data;
+    })
     $scope.pageChanged = function() {
         PaginationContent.get({page_num:$scope.currentPage},function (data) {
             console.log(data);
             $scope.contents = data.content;
         })
     };
+    $scope.selectChapter = function() {
+        console.log($scope.chapter);
+        if($scope.chapter) {
+            ChapterWiseContent.get({chapter:$scope.chapter.id}, function (data) {
+                $scope.contents = data;
+                $scope.currentPage = 0;
+                $scope.numPerPage = 0;
+                $scope.maxSize = 20;
+                $scope.currentPage = 0;
+                $scope.totalElement =0;
 
-}).controller('ContentAddController', function($scope,$stateParams,$state, Content, AllSection) {
+            })
+        }
+
+    };
+    $scope.allData = function() {
+        Content.get(function (data) {
+            $scope.contents = data.content;
+            $scope.currentPage = data.number+1;
+            $scope.numPerPage = data.size;
+            $scope.maxSize = 20;
+            $scope.currentPage = data.currentIndex;
+            $scope.totalElement = data.totalElements;
+
+        })
+    };
+
+}).controller('ContentAddController', function($scope, $rootScope, $stateParams,$state, Content, AllSection) {
     $scope.objects=[{section:{}}];
     $scope.section=null;
     $scope.sections={};
     $scope.hideAddMore = false;
-    $scope.attachment = null;
+    $scope.attachments = [];
 
 
     if($stateParams.id) {
@@ -38,13 +68,19 @@ angular.module('app').controller('ContentController', function($scope,Content, P
             $scope.section = data.section
         })
     }
-    $scope.uploadFile = function ($file) {
+    $scope.uploadFile = function ($index, $file) {
         console.log("clicked")
         $scope.$apply(function () {
             console.log($file)
-            $scope.attachment = $rootScope.setFile($file);
-            console.log($scope.attachment)
-        });
+            console.log($index)
+            $scope.attachments[$index] = $rootScope.setFile($file);
+            console.log( $scope.attachments[$index])
+            // $scope.objects[$index].image  = $scope.attachment.file
+            // $scope.objects[$index].fileContentType  = $scope.attachment.fileContentType
+            // $scope.objects[$index].fileName  = $scope.attachment.fileName
+            // console.log($scope.objects[$index].fileContentType)
+        })
+
     };
     AllSection.get(function (data) {
         $scope.sections = data;
@@ -61,10 +97,17 @@ angular.module('app').controller('ContentController', function($scope,Content, P
     };
     $scope.save = function() {
         console.log($scope.objects)
-        angular.forEach($scope.objects, function(object) {
+        angular.forEach($scope.objects, function(object, $index) {
             object.section.id = $scope.section.id;
+            if(object.hasImage) {
+                object.image  = $scope.attachments[$index].file
+                object.fileContentType  = $scope.attachments[$index].fileContentType
+                object.fileName  = $scope.attachments[$index].fileName
+
+            }
+
         });
-        Content.save($scope.objects, onSaveSuccess, onSaveError);
+       Content.save($scope.objects, onSaveSuccess, onSaveError);
     };
     $scope.addMoreContent = function() {
         $scope.objects.push({section:{}});

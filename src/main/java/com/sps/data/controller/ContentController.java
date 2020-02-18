@@ -2,6 +2,7 @@ package com.sps.data.controller;
 
 import com.sps.data.entities.Paragraph;
 import com.sps.data.repositories.ParagraphRepository;
+import com.sps.data.util.AttachmentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +22,9 @@ public class ContentController {
     @Autowired
     private ParagraphRepository paragraphRepository;
 
+    @Autowired
+    private AttachmentUtil attachmentUtil;
+
     @RequestMapping
     public ResponseEntity<Page> list(ModelMap model) {
        return paginationList(1,model);
@@ -36,9 +40,26 @@ public class ContentController {
         return new ResponseEntity<Page>(currentResults,HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/chapter-wise", method = RequestMethod.GET)
+    public ResponseEntity<List<Paragraph>> paginationList(@RequestParam(value = "chapter", required = false) Long chapterId) {
+
+        List<Paragraph> currentResults = paragraphRepository.findByChapterId(chapterId);
+
+        return new ResponseEntity<List<Paragraph>>(currentResults,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "",method = RequestMethod.POST)
     public ResponseEntity<List<Paragraph>> create(@RequestBody List<Paragraph> paragraphs) {
+        for (Paragraph attachment: paragraphs) {
+            if(attachment.getHasImage() == true && attachment.getImage() != null) {
+                try {
+                    attachment.setFileName(attachmentUtil.saveAttachmentWithoutExtension(attachment));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
 
+        }
         paragraphs = (List<Paragraph>) paragraphRepository.saveAll(paragraphs);
 
        return new ResponseEntity<List<Paragraph>>(paragraphs,HttpStatus.OK);

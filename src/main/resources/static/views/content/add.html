@@ -44,7 +44,7 @@
 
                                 <div class="form-group col-md-2" style="margin-top: 25px;">
                                     <label for="hasImage">
-                                        <input type="checkbox" name="hasImage" ID="hasImage"
+                                        <input type="checkbox" name="hasImage"
                                                placeholder="Has Index"
                                                ng-model="object.hasImage" value="true"> Has Image</label>
                                 </div>
@@ -83,10 +83,9 @@
                                 <div class="form-group col-md-8">
                                     <label for="content">Image {{object.hasImage == true}}</label>
                                     <input type="file" ngf-select class=" form-control"
-                                           ngf-change="uploadFile($file)"
+                                           ngf-change="uploadFile($index, $file)"
                                            id="image" name="image"
-                                           required="object.hasImage"
-                                           ng-model="object.image">
+                                           required="object.hasImage">
                                 </div>
                             </div>
                         </div>

@@ -42,6 +42,16 @@ angular.module('app')
             }].concat($http.defaults.transformResponse)
         }
     })
+}).factory('ChapterWiseContent', function ($http, $resource) {
+    return $resource('api/content/chapter-wise', {}, {
+        'get': {
+            method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json', isArray:true,
+            transformResponse: [function (data, headersGetter) {
+                console.log(data);
+                return data;
+            }].concat($http.defaults.transformResponse)
+        }
+    })
 }).factory('PaginationContent', function ($http, $resource) {
     return $resource('/api/content/page/:page_num', {}, {
         'get': {

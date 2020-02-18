@@ -49,6 +49,15 @@ public class Paragraph implements Serializable {
     @JoinColumn(name = "SECTION_ID")
     private Section section;
 
+    @Column(name = "file_name")
+    private String fileName;
+
+    @Column(name = "file_content_name")
+    private String fileContentName;
+
+    @Column(name = "file_content_type")
+    private String fileContentType;
+
     @Column(name = "HAS_IMAGE")
     private Boolean hasImage = false;
 
@@ -103,6 +112,30 @@ public class Paragraph implements Serializable {
 
     public void setSection(Section section) {
         this.section = section;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileContentName() {
+        return fileContentName;
+    }
+
+    public void setFileContentName(String fileContentName) {
+        this.fileContentName = fileContentName;
+    }
+
+    public String getFileContentType() {
+        return fileContentType;
+    }
+
+    public void setFileContentType(String fileContentType) {
+        this.fileContentType = fileContentType;
     }
 
     public Integer getSerial() {
