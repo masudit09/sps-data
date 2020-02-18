@@ -5,13 +5,11 @@ import com.sps.data.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,11 +55,11 @@ public class SectionController {
 
     @RequestMapping("/{id}")
     public ResponseEntity<Section> edit(@PathVariable("id") Long id) {
-       Optional<Section> section = sectionRepository.findById(id);
+       Section section = sectionRepository.findOne(id);
        if(section == null){
            return new ResponseEntity<Section>(HttpStatus.NO_CONTENT);
        }else {
-           return new ResponseEntity<Section>(section.get(),HttpStatus.OK);
+           return new ResponseEntity<Section>(section,HttpStatus.OK);
        }
     }
 

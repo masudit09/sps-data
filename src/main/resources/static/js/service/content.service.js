@@ -33,7 +33,7 @@ angular.module('app')
             }
         });
     }).factory('AllContent', function ($http, $resource) {
-    return $resource('api/content/find-all', {}, {
+    return $resource('./api/content/find-all', {}, {
         'get': {
             method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
             transformResponse: [function (data, headersGetter) {
@@ -43,7 +43,7 @@ angular.module('app')
         }
     })
 }).factory('ChapterWiseContent', function ($http, $resource) {
-    return $resource('api/content/chapter-wise', {}, {
+    return $resource('./api/content/chapter-wise', {}, {
         'get': {
             method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json', isArray:true,
             transformResponse: [function (data, headersGetter) {
@@ -53,7 +53,7 @@ angular.module('app')
         }
     })
 }).factory('PaginationContent', function ($http, $resource) {
-    return $resource('/api/content/page/:page_num', {}, {
+    return $resource('./api/content/page/:page_num', {}, {
         'get': {
             method: 'GET', params: {}, format: 'json',
             transformResponse: [function (data, headersGetter) {

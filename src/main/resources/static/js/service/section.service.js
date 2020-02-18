@@ -2,7 +2,7 @@
 
 angular.module('app')
     .factory('Section', function ($http, $resource) {
-        return $resource('api/section/:id', {}, {
+        return $resource('./api/section/:id', {}, {
             'get': {
                 method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
                 transformResponse: [function (data, headersGetter) {
@@ -33,7 +33,7 @@ angular.module('app')
             }
         });
     }).factory('AllSection', function ($http, $resource) {
-    return $resource('api/section/find-all', {}, {
+    return $resource('./api/section/find-all', {}, {
         'get': {
             method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',isArray:true,
             transformResponse: [function (data, headersGetter) {
@@ -43,7 +43,7 @@ angular.module('app')
         }
     })
 }).factory('PaginationSection', function ($http, $resource) {
-    return $resource('/api/section/page/:page_num', {}, {
+    return $resource('./api/section/page/:page_num', {}, {
         'get': {
             method: 'GET', params: {}, format: 'json',
             transformResponse: [function (data, headersGetter) {

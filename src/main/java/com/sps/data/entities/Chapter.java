@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.olap4j.metadata.XmlaConstants.Content.Data;
 
 /**
  * Created by rana on 11/12/19.

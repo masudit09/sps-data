@@ -13,7 +13,7 @@ public class PropertyConfig {
 
 	public static void load() {
 		try {
-			File file = new File("db.properties");
+			File file = new File("classpath:db.properties");
 			if(prop == null) {
 				prop = new Properties();
 			}

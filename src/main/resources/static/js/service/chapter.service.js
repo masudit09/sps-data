@@ -2,7 +2,7 @@
 
 angular.module('app')
     .factory('Chapter', function ($http, $resource) {
-        return $resource('api/chapter/:id', {}, {
+        return $resource('./api/chapter/:id', {}, {
             'get': {
                 method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json',
                 transformResponse: [function (data, headersGetter) {
@@ -33,7 +33,7 @@ angular.module('app')
             }
         });
     }).factory('AllChapter', function ($http, $resource) {
-    return $resource('api/chapter/find-all', {}, {
+    return $resource('./api/chapter/find-all', {}, {
         'get': {
             method: 'GET', headers: {'Content-Type': 'application/json'}, params: {}, format: 'json', isArray:true,
             transformResponse: [function (data, headersGetter) {

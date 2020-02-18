@@ -60,18 +60,18 @@ public class ContentController {
             }
 
         }
-        paragraphs = (List<Paragraph>) paragraphRepository.saveAll(paragraphs);
+        paragraphs = (List<Paragraph>) paragraphRepository.save(paragraphs);
 
        return new ResponseEntity<List<Paragraph>>(paragraphs,HttpStatus.OK);
     }
 
     @RequestMapping("/{id}")
     public ResponseEntity<Paragraph> edit(@PathVariable("id") Long id) {
-       Optional<Paragraph> assessee = paragraphRepository.findById(id);
+        Paragraph assessee = paragraphRepository.findOne(id);
        if(assessee == null){
            return new ResponseEntity<Paragraph>(HttpStatus.NO_CONTENT);
        }else {
-           return new ResponseEntity<Paragraph>(assessee.get(),HttpStatus.OK);
+           return new ResponseEntity<Paragraph>(assessee,HttpStatus.OK);
        }
     }
 

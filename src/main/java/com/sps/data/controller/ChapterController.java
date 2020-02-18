@@ -41,11 +41,11 @@ public class ChapterController {
 
     @RequestMapping("/{id}")
     public ResponseEntity<Chapter> edit(@PathVariable("id") Long id) {
-       Optional<Chapter> assessee = chapterRepository.findById(id);
+       Chapter assessee = chapterRepository.findOne(id);
        if(assessee == null){
            return new ResponseEntity<Chapter>(HttpStatus.NO_CONTENT);
        }else {
-           return new ResponseEntity<Chapter>(assessee.get(),HttpStatus.OK);
+           return new ResponseEntity<Chapter>(assessee,HttpStatus.OK);
        }
     }
 
