@@ -20,7 +20,6 @@ public class Paragraph implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @SequenceGenerator(name = "PARAGRAPH_SEQUENCE_GENERATOR", sequenceName = "PARAGRAPH_ID_SEQUENCE")
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "PARAGRAPH_SEQUENCE_GENERATOR")
     private Long id;

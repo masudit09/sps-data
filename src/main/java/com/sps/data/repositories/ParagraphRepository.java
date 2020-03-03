@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ParagraphRepository extends BaseRepository<Paragraph> {
 
-    @Query("SELECT x FROM Paragraph x WHERE x.section.chapter.id = :chapterId order by x.serial")
+    @Query("SELECT x FROM Paragraph x WHERE x.section.chapter.id = :chapterId order by x.section.serial asc, x.serial asc")
     public List<Paragraph> findByChapterId( @Param("chapterId") Long chapterId);
 
 }

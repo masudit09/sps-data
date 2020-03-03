@@ -1,4 +1,4 @@
-angular.module('app').controller('ContentController', function($scope, AllChapter, Content, PaginationContent, ChapterWiseContent) {
+angular.module('app').controller('ContentController', function($scope, AllChapter, Content, PaginationContent, ChapterWiseContent, DeleteContent) {
 
     $scope.contents=[];
     $scope.currentPage = 0;
@@ -51,6 +51,23 @@ angular.module('app').controller('ContentController', function($scope, AllChapte
 
         })
     };
+    $scope.deleteContent = function(id) {
+        console.log(id);
+        DeleteContent.delete({id:id},function (data) {
+            console.log("deleted data: ");
+            console.log(data);
+            ChapterWiseContent.get({chapter:$scope.chapter.id}, function (data) {
+                $scope.contents = data;
+                $scope.currentPage = 0;
+                $scope.numPerPage = 0;
+                $scope.maxSize = 20;
+                $scope.currentPage = 0;
+                $scope.totalElement =0;
+
+            })
+
+        })
+    };
 
 }).controller('ContentAddController', function($scope, $rootScope, $stateParams,$state, Content, AllSection) {
     $scope.objects=[{section:{}}];
@@ -78,7 +95,7 @@ angular.module('app').controller('ContentController', function($scope, AllChapte
             // $scope.objects[$index].image  = $scope.attachment.file
             // $scope.objects[$index].fileContentType  = $scope.attachment.fileContentType
             // $scope.objects[$index].fileName  = $scope.attachment.fileName
-            // console.log($scope.objects[$index].fileContentType)
+            console.log($scope.attachments[$index])
         })
 
     };

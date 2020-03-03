@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="chapter">Chapter</label>
             <select id="chapter" name="chapter" class="form-control input-large"
-                    ng-options="chapter.nameBangla for chapter in chapters track by chapter.serial"
+                    ng-options="chapter.chapterName for chapter in chapters track by chapter.serial"
                     ng-model="chapter"
                     ng-change="selectChapter()">
                 <option value="">Select Chapter</option>
@@ -33,7 +33,9 @@
                 <td >{{content.indexChar}}</td>
                 <td >{{content.content}}</td>
                 <td >{{content.fileName}}</td>
-                <td > <a ui-sref="add-content({id:content.id})"><span>Edit</span></a></td>
+                <td > <a class="btn btn-sm btn-default" ui-sref="add-content({id:content.id})"><span>Edit</span></a>
+                    <button ng-click="deleteContent(content.id)" type="button"  class="btn btn-sm btn-danger " >Delete</button>
+                </td>
             </tr>
         </table>
         <div align="center"><pagination  ng-model="currentPage"

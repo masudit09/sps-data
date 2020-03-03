@@ -61,6 +61,15 @@ angular.module('app')
             }].concat($http.defaults.transformResponse)
         }
     });
+}).factory('DeleteContent', function ($http, $resource) {
+    return $resource('./api/content/delete/:id', {}, {
+        'delete': {
+            method: 'GET', params: {}, format: 'json',
+            transformResponse: [function (data, headersGetter) {
+                return data;
+            }].concat($http.defaults.transformResponse)
+        }
+    });
 })
 ;
 

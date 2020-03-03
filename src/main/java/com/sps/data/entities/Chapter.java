@@ -90,4 +90,8 @@ public class Chapter {
     public void setSections(List<Section> sections) {
         this.sections = sections;
     }
+
+    public String getChapterName() {
+        return " অধ্যায়-"+serial+": "+nameBangla;
+    }
 }

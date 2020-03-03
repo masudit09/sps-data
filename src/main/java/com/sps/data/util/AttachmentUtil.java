@@ -84,7 +84,13 @@ public class AttachmentUtil {
         if (contentType.equals("application/pdf")) {
             extension = ".pdf";
         } else {
-            extension = ".png";
+            contentType.split("/");
+            try {
+                extension = "."+contentType.split("/")[1];
+            } catch (Exception ex) {
+                extension = ".png";
+            }
+
         }
         return extension;
     }

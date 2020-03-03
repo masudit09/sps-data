@@ -55,11 +55,11 @@ public class SectionController {
 
     @RequestMapping("/{id}")
     public ResponseEntity<Section> edit(@PathVariable("id") Long id) {
-       Section section = sectionRepository.findOne(id);
+       Optional<Section> section = sectionRepository.findById(id);
        if(section == null){
            return new ResponseEntity<Section>(HttpStatus.NO_CONTENT);
        }else {
-           return new ResponseEntity<Section>(section,HttpStatus.OK);
+           return new ResponseEntity<Section>(section.get(),HttpStatus.OK);
        }
     }
 
