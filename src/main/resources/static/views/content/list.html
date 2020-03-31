@@ -20,6 +20,7 @@
             <thead>
             <th>Chapter</th>
             <th>Section</th>
+            <th>sl</th>
             <th>Header</th>
             <th>Index</th>
             <th>Content</th>
@@ -29,6 +30,7 @@
             <tr ng-repeat="content in contents">
                 <td >{{content.section.chapter.nameBangla}}</td>
                 <td >{{content.section.header}}</td>
+                <td >{{content.serial}}</td>
                 <td >{{content.header}}</td>
                 <td >{{content.indexChar}}</td>
                 <td >{{content.content}}</td>

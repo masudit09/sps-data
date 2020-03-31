@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,12 @@ public class Section implements Serializable {
     @ManyToOne
     @JoinColumn(name = "CHAPTER_ID")
     private Chapter chapter;
+
+    @Column(name = "FAV_STATUS")
+    private Boolean favStatus=false;
+
+    @Column(name = "SERIAL_NUMBER")
+    private BigDecimal serialNumber;
 
     @JsonIgnoreProperties("section")
     @OneToMany(mappedBy = "section", fetch = FetchType.LAZY)
@@ -96,5 +103,21 @@ public class Section implements Serializable {
     public String getHeader() {
 
         return (this.getChapter() != null? this.getChapter().getSerial():"")+"." + this.serial +" "+ this.nameBangla;
+    }
+
+    public Boolean getFavStatus() {
+        return favStatus;
+    }
+
+    public void setFavStatus(Boolean favStatus) {
+        this.favStatus = favStatus;
+    }
+
+    public BigDecimal getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(BigDecimal serialNumber) {
+        this.serialNumber = serialNumber;
     }
 }

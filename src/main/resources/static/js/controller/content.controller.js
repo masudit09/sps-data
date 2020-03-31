@@ -69,7 +69,7 @@ angular.module('app').controller('ContentController', function($scope, AllChapte
         })
     };
 
-}).controller('ContentAddController', function($scope, $rootScope, $stateParams,$state, Content, AllSection) {
+}).controller('ContentAddController', function($scope, $rootScope, $stateParams,$state, Content, AllSection, MaxSerialBySection) {
     $scope.objects=[{section:{}}];
     $scope.section=null;
     $scope.sections={};
@@ -127,10 +127,19 @@ angular.module('app').controller('ContentController', function($scope, AllChapte
        Content.save($scope.objects, onSaveSuccess, onSaveError);
     };
     $scope.addMoreContent = function() {
-        $scope.objects.push({section:{}});
+        var serial = $scope.objects[$scope.objects.length-1].serial;
+        console.log(serial)
+        $scope.objects.push({section:{}, serial:serial+1});
     };
     $scope.removeContent = function($index) {
         $scope.objects.splice($index, 1);
+    };
+    $scope.changeSerial = function() {
+        console.log($scope.section.id)
+        MaxSerialBySection.get({sectionId:$scope.section.id}, function (data) {
+            console.log(data);
+            $scope.objects=[{section:{}, serial:data.serial+1}];
+        })
     };
 });
 

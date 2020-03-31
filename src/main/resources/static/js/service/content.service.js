@@ -70,6 +70,15 @@ angular.module('app')
             }].concat($http.defaults.transformResponse)
         }
     });
+}).factory('MaxSerialBySection', function ($http, $resource) {
+    return $resource('./api/content/max-serial/:sectionId', {}, {
+        'get': {
+            method: 'GET', params: {}, format: 'json',
+            transformResponse: [function (data, headersGetter) {
+                return data;
+            }].concat($http.defaults.transformResponse)
+        }
+    });
 })
 ;
 

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,12 @@ public class Chapter {
 
     @Column(name = "TITLE")
     private String title;
+
+    @Column(name = "FAV_STATUS")
+    private Boolean favStatus=false;
+
+    @Column(name = "SERIAL_NUMBER")
+    private BigDecimal serialNumber;
 
     @JsonIgnoreProperties("chapter")
     @OneToMany(mappedBy = "chapter", fetch = FetchType.LAZY)
@@ -91,7 +98,25 @@ public class Chapter {
         this.sections = sections;
     }
 
+    public Boolean getFavStatus() {
+        return favStatus;
+    }
+
+    public void setFavStatus(Boolean favStatus) {
+        this.favStatus = favStatus;
+    }
+
+    public BigDecimal getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(BigDecimal serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
     public String getChapterName() {
         return " অধ্যায়-"+serial+": "+nameBangla;
     }
+
+
 }

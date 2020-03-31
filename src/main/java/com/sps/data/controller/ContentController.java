@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -73,6 +75,17 @@ public class ContentController {
        }else {
            return new ResponseEntity<Paragraph>(assessee.get(),HttpStatus.OK);
        }
+    }
+
+    @RequestMapping("/max-serial/{sectionId}")
+    public ResponseEntity<Map> getMaxSerial(@PathVariable("sectionId") Long id) {
+       Integer maxParagraphSerial = paragraphRepository.findMaxParagraphSerial(id);
+       if(maxParagraphSerial == null){
+           maxParagraphSerial = 0;
+       }
+        Map response = new HashMap<String,Integer>();
+        response.put("serial", maxParagraphSerial);
+        return new ResponseEntity<Map>(response,HttpStatus.OK);
     }
 
     @RequestMapping("/delete/{id}")
